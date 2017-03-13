@@ -44,6 +44,6 @@
 *.tre
 
 # PIC_CCSC_CameraMount
-html/
-rtf/
-build/
+/html/
+/rtf/
+/build/
