@@ -1,0 +1,34 @@
+/**
+ * @file        CameraMount_CyclicHandler.h
+ * @brief       カメラマウントコントローラ 周期ハンドラ
+ * @author      Keitetsu
+ * @date        2016/12/18
+ * @copyright   Copyright (c) 2016 Keitetsu
+ * @par         License
+ *              This software is released under the MIT License.
+ */
+
+#ifndef __CAMERAMOUNT_CYCLICHANDLER_H__
+#define __CAMERAMOUNT_CYCLICHANDLER_H__
+
+
+/**
+ * @name    周期ハンドラの実行制御
+ */
+/*! @{ */
+#define CYCLICHANDLER_SLOT_NUM  4       /*!< 実行スロット数 */
+/*! @} */
+
+
+/**
+ * @brief   周期ハンドラの初期化（タイマ1割込みの初期化）
+ */
+void CyclicHandler_init(void);
+
+
+/**
+ * @brief   周期ハンドラ処理（タイマ1割込み処理）
+ */
+void isr_TIMER1(void);
+
+#endif  // __CAMERAMOUNT_CYCLICHANDLER_H__

@@ -31,3 +31,19 @@
 # Debug files
 *.dSYM/
 *.su
+
+# CCS C Compiler
+*.BAK
+*.cod
+*.cof
+*.err
+*.LST
+*.PJT
+*.sta
+*.SYM
+*.tre
+
+# PIC_CCSC_CameraMount
+html/
+rtf/
+build/
