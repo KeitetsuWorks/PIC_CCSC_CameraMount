@@ -13,6 +13,14 @@
 
 
 /**
+ * @name    タイマ0の設定
+ */
+/*! @{ */
+#define TIMER0_INITIAL_VALUE    0       /*!< 0 */
+/*! @} */
+
+
+/**
  * @struct  servo_t
  * @brief   サーボ制御管理構造体
  */

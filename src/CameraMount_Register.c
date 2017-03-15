@@ -47,7 +47,7 @@ uint8_t Register_getSize(uint8_t index)
     
     size = 0;
     
-    if (index < REGISTER_INDEX_E_NUM) {
+    if (index < REGISTER_INDEX_NUM) {
         size = Register_table[index].size;
     }
     
@@ -66,7 +66,7 @@ uint8_t Register_read(
     read_buffer = (uint8_t *)data;
     read_count = 0;
     
-    if (index < REGISTER_INDEX_E_NUM) {
+    if (index < REGISTER_INDEX_NUM) {
         read_addr = Register_table[index].addr;
         while (read_count < Register_table[index].size) {
             *read_buffer = *read_addr;
@@ -91,7 +91,7 @@ uint8_t Register_write(
     write_data = (uint8_t *)data;
     write_count = 0;
     
-    if (    (index < REGISTER_INDEX_E_NUM)
+    if (    (index < REGISTER_INDEX_NUM)
         &&  (Register_table[index].write_enable == TRUE)  ) {
         write_addr = Register_table[index].addr;
         while (write_count < Register_table[index].size) {

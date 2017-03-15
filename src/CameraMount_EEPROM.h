@@ -77,25 +77,22 @@
 
 
 /**
- * @enum    eeprom_index_e
- * @brief   EEPROMインデックス
+ * @name    EEPROMインデックス
  */
 /*! @{ */
-enum eeprom_index_e {
-    EEPROM_PAN_SERVO_NEUTRAL_POSITION = 0,                  /*!< 水平方向用サーボ，ニュートラル位置 */
-    EEPROM_PAN_SERVO_MIN_POSITION,                          /*!< 水平方向用サーボ，最小位置 */
-    EEPROM_PAN_SERVO_MAX_POSITION,                          /*!< 水平方向用サーボ，最大位置 */
-    EEPROM_TILT_SERVO_NEUTRAL_POSITION,                     /*!< 垂直方向用サーボ，ニュートラル位置 */
-    EEPROM_TILT_SERVO_MIN_POSITION,                         /*!< 垂直方向用サーボ，最小位置 */
-    EEPROM_TILT_SERVO_MAX_POSITION,                         /*!< 垂直方向用サーボ，最大位置 */
-    EEPROM_POWER_LED_BRIGHTNESS_MIN,                        /*!< 電源LEDの最小PWMデューティ */
-    EEPROM_POWER_LED_BRIGHTNESS_MAX,                        /*!< 電源LEDの最大PWMデューティ */
-    EEPROM_POWER_LED_BRIGHTNESS_STEP,                       /*!< 電源LEDのPWMデューティの増減幅 */
-    EEPROM_STATUS_LED_BRINK_PERIOD_COM_TIMEOUT,             /*!< ステータスLEDの点滅周期，通信タイムアウト */
-    EEPROM_ERROR_LED_BRINK_PERIOD,                          /*!< エラーLEDの点滅周期 */
-    EEPROM_COM_TIMEOUT_LIMIT,                               /*!< 通信タイムアウト検出時間 */
-    EEPROM_INDEX_E_NUM                                      /*!< eeprom_index_eの列挙数 */
-};
+#define EEPROM_PAN_SERVO_NEUTRAL_POSITION                       0       /*!< 水平方向用サーボ，ニュートラル位置 */
+#define EEPROM_PAN_SERVO_MIN_POSITION                           1       /*!< 水平方向用サーボ，最小位置 */
+#define EEPROM_PAN_SERVO_MAX_POSITION                           2       /*!< 水平方向用サーボ，最大位置 */
+#define EEPROM_TILT_SERVO_NEUTRAL_POSITION                      3       /*!< 垂直方向用サーボ，ニュートラル位置 */
+#define EEPROM_TILT_SERVO_MIN_POSITION                          4       /*!< 垂直方向用サーボ，最小位置 */
+#define EEPROM_TILT_SERVO_MAX_POSITION                          5       /*!< 垂直方向用サーボ，最大位置 */
+#define EEPROM_POWER_LED_BRIGHTNESS_MIN                         6       /*!< 電源LEDの最小PWMデューティ */
+#define EEPROM_POWER_LED_BRIGHTNESS_MAX                         7       /*!< 電源LEDの最大PWMデューティ */
+#define EEPROM_POWER_LED_BRIGHTNESS_STEP                        8       /*!< 電源LEDのPWMデューティの増減幅 */
+#define EEPROM_STATUS_LED_BRINK_PERIOD_COM_TIMEOUT              9       /*!< ステータスLEDの点滅周期，通信タイムアウト */
+#define EEPROM_ERROR_LED_BRINK_PERIOD                           10      /*!< エラーLEDの点滅周期 */
+#define EEPROM_COM_TIMEOUT_LIMIT                                11      /*!< 通信タイムアウト検出時間 */
+#define EEPROM_INDEX_NUM                                        12      /*!< EEPROMインデックスの数 */
 /*! @} */
 
 

@@ -56,7 +56,7 @@ uint8_t EEPROM_getSize(uint8_t index)
     
     size = 0;
     
-    if (index < EEPROM_INDEX_E_NUM) {
+    if (index < EEPROM_INDEX_NUM) {
         size =  EEPROM_table[index].size;
     }
     
@@ -74,7 +74,7 @@ uint8_t EEPROM_read(
     read_buffer = (uint8_t *)data;
     read_count = 0;
     
-    if (index < EEPROM_INDEX_E_NUM) {
+    if (index < EEPROM_INDEX_NUM) {
         while (read_count < EEPROM_table[index].size) {
             *read_buffer = read_eeprom(EEPROM_table[index].addr + read_count);
             read_buffer++;
@@ -105,7 +105,7 @@ bool EEPROM_write(
     copy_count = 0;
     
     if (EEPROM_isWriting() == FALSE) {
-        if (    (index < EEPROM_INDEX_E_NUM)
+        if (    (index < EEPROM_INDEX_NUM)
             &&  (EEPROM_table[index].write_enable == TRUE)  ) {
             while (copy_count < EEPROM_table[index].size) {
                 EEPROM_write_buffer[copy_count] = *write_data;

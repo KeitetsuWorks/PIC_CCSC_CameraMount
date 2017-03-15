@@ -163,7 +163,7 @@ void System_init(void)
     
     System_error = 0x00;
     
-    System_initialization_request = FALSE;
+    System_initialization_request = TRUE;
     
     return;
 }
@@ -403,6 +403,8 @@ static void System_execTask_RUN(void)
     
     if (com_timeout_timer > com_timeout_limit) {
         System_status |= SYSTEM_STATUS_COM_TIMEOUT;
+        System_initCommandCtrl();
+        System_initResponseCtrl();
         uart_tx_initBuffer();
         uart_rx_initBuffer();
         com_timeout_timer = 0;
@@ -438,6 +440,8 @@ static void System_execTask_HALT(void)
     
     if (com_timeout_timer >= com_timeout_limit) {
         System_status |= SYSTEM_STATUS_COM_TIMEOUT;
+        System_initCommandCtrl();
+        System_initResponseCtrl();
         uart_tx_initBuffer();
         uart_rx_initBuffer();
         com_timeout_timer = 0;

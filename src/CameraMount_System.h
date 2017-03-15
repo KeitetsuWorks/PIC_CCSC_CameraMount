@@ -55,15 +55,14 @@
 
 
 /**
- * @enum    system_state_e
- * @brief   カメラマウントコントローラのシステムステート
+ * @name    カメラマウントコントローラのシステムステート
  */
-enum system_state_e {
-    SYSTEM_INITIALIZATION = 0,  /*!< 初期化中 */
-    SYSTEM_RUN,                 /*!< 動作中 */
-    SYSTEM_HALT,                /*!< 停止中 */
-    SYSTEM_STATE_E_NUM          /*!< CMS_STATE_E_NUMの列挙数 */
-};
+/*! @{ */
+#define SYSTEM_INITIALIZATION                   0       /*!< 初期化中 */
+#define SYSTEM_RUN                              1       /*!< 動作中 */
+#define SYSTEM_HALT                             2       /*!< 停止中 */
+#define SYSTEM_STATE_NUM                        3       /*!< システムステートの数 */
+/*! @} */
 
 
 /**

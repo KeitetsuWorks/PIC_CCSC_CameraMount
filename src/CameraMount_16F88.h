@@ -26,20 +26,4 @@
 #define STATUS_LED_PIN          PIN_A2  /*!< RA2，ステータスLEDピン */
 #define ERROR_LED_PIN           PIN_A3  /*!< RA3，エラーLEDピン */
 
-
-/**
- * @name    タイマ0の設定
- */
-/*! @{ */
-#define TIMER0_INITIAL_VALUE    0       /*!< 0 */
-/*! @} */
-
-
-/**
- * @name    タイマ1の設定
- */
-/*! @{ */
-#define TIMER1_INITIAL_VALUE    62411   /*!< 5ミリ秒 */
-/*! @} */
-
 #endif  // __CAMERAMOUNT_16F88_H__

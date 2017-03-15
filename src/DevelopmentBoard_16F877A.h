@@ -26,20 +26,4 @@
 #define STATUS_LED_PIN          PIN_B0  /*!< RB0，ステータスLEDピン */
 #define ERROR_LED_PIN           PIN_B1  /*!< RB1，エラーLEDピン */
 
-
-/**
- * @name    タイマ0の設定
- */
-/*! @{ */
-#define TIMER0_INITIAL_VALUE    0       /*!< 0 */
-/*! @} */
-
-
-/**
- * @name    タイマ1の設定
- */
-/*! @{ */
-#define TIMER1_INITIAL_VALUE    62411   /*!< 5ミリ秒 */
-/*! @} */
-
 #endif  // __DEVELOPMENTBOARD_16F877A_H__
