@@ -28,7 +28,7 @@ del /Q %DOXYGEN_HTML_DIR%\*.md5
 del /Q %DOXYGEN_RTF_DIR%\*.md5
 del /Q %DOXYGEN_RTF_DIR%\dir*.rtf
 
+:END_MAKE
 endlocal
 
-:END_MAKE
 exit

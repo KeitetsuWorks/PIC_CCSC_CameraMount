@@ -50,7 +50,7 @@ move /Y %SRC_DIR%\*.sta %BUILD_DIR%
 move /Y %SRC_DIR%\*.SYM %BUILD_DIR%
 move /Y %SRC_DIR%\*.tre %BUILD_DIR%
 
+:END_MAKE
 endlocal
 
-:END_MAKE
 exit
