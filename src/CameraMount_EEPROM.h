@@ -107,6 +107,7 @@ struct eeprom_t {
 };
 
 
+/*! @cond */
 #ROM 0x2100={
     EEPROM_INIT_PAN_SERVO_NEUTRAL_POSITION,
     EEPROM_INIT_PAN_SERVO_MIN_POSITION,
@@ -124,6 +125,7 @@ struct eeprom_t {
     EEPROM_INIT_COM_TIMEOUT_LIMIT_L,
     EEPROM_INIT_COM_TIMEOUT_LIMIT_H
 }
+/*! @endcond */
 
 
 /**

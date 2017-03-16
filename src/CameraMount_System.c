@@ -49,7 +49,7 @@ uint8_t System_command_recieved_bytes;                  /*!< システムコマ�
 
 
 /**
- * @name    システムコマンド
+ * @name    システムレスポンス
  */
 /*! @{ */
 uint8_t System_response[SYSTEM_RESPONSE_LENGTH_MAX];    /*!< システムレスポンス */
@@ -375,6 +375,7 @@ static void System_execTask_INITIALIZATION(void)
     uart_tx_initBuffer();
     uart_rx_initBuffer();
     uart_rx_enable();
+    com_timeout_timer = 0;
     
     if (System_error != 0) {
         System_state_next = SYSTEM_HALT;
@@ -401,7 +402,7 @@ static void System_execTask_RUN(void)
         com_timeout_timer++;
     }
     
-    if (com_timeout_timer > com_timeout_limit) {
+    if (com_timeout_timer >= com_timeout_limit) {
         System_status |= SYSTEM_STATUS_COM_TIMEOUT;
         System_initCommandCtrl();
         System_initResponseCtrl();
