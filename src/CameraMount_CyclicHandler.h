@@ -13,10 +13,10 @@
 
 
 /**
- * @name    タイマ1の設定
+ * @name    タイマ0の設定
  */
 /*! @{ */
-#define TIMER1_INITIAL_VALUE    62411   /*!< 5ミリ秒 */
+#define TIMER0_INITIAL_VALUE    61      /*!< 5ミリ秒 */
 /*! @} */
 
 
@@ -29,14 +29,14 @@
 
 
 /**
- * @brief   周期ハンドラの初期化（タイマ1割込みの初期化）
+ * @brief   周期ハンドラの初期化（タイマ0割込みの初期化）
  */
 void CyclicHandler_init(void);
 
 
 /**
- * @brief   周期ハンドラ処理（タイマ1割込み処理）
+ * @brief   周期ハンドラ処理（タイマ0割込み処理）
  */
-void isr_TIMER1(void);
+void isr_TIMER0(void);
 
 #endif  // __CAMERAMOUNT_CYCLICHANDLER_H__

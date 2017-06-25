@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="1">
+    <includedir>
+        <dir name="C:/Program Files (x86)/PICC/Devices/"/>
+        <dir name="C:/Program Files (x86)/PICC/Drivers/"/>
+    </includedir>
+    <paths>
+        <dir name="src"/>
+    </paths>
+</project>

@@ -13,10 +13,20 @@
 
 
 /**
- * @name    タイマ0の設定
+ * @name    タイマ1の設定
  */
 /*! @{ */
-#define TIMER0_INITIAL_VALUE    0       /*!< 0 */
+#define TIMER1_INITIAL_VALUE    59286   /*!< 10ミリ秒 */
+/*! @} */
+
+
+/**
+ * @name    サーボ制御チャンネル
+ */
+/*! @{ */
+#define SERVO_CHANNEL_PAN       0       /*!< 水平方向用サーボ */
+#define SERVO_CHANNEL_TILT      1       /*!< 垂直方向用サーボ */
+#define SERVO_CHANNEL_NUM       2       /*!< サーボ制御チャンネル数 */
 /*! @} */
 
 
@@ -25,10 +35,10 @@
  * @brief   サーボ制御管理構造体
  */
 struct servo_t {
-    uint8_t request_position;   /*!< 指示位置 */
-    uint8_t neutral_position;   /*!< ニュートラル位置 */
-    uint8_t min_position;       /*!< 最小位置 */
-    uint8_t max_position;       /*!< 最大位置 */
+    uint16_t request_position;  /*!< 指示位置 */
+    uint16_t neutral_position;  /*!< ニュートラル位置 */
+    uint16_t min_position;      /*!< 最小位置 */
+    uint16_t max_position;      /*!< 最大位置 */
 };
 
 
@@ -39,14 +49,14 @@ void Servo_init(void);
 
 
 /**
- * @brief   水平方向用サーボ制御関数
+ * @brief   サーボ制御信号（パルス信号）の開始ハンドラ処理（タイマ1割込み処理）
  */
-void PanServo_ctrl(void);
+void isr_TIMER1(void);
 
 
 /**
- * @brief   垂直方向用サーボ制御関数
+ * @brief   サーボ制御信号（パルス信号）の終了ハンドラ処理（CCP1割込み処理）
  */
-void TiltServo_ctrl(void);
+void isr_CCP1(void);
 
 #endif  // __CAMERAMOUNT_SERVO_H__

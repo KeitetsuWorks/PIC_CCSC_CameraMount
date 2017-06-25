@@ -22,17 +22,17 @@ if not exist %SRC_DIR%\ (
 	pause
 	goto END_MAKE
 )
-cd %SRC_DIR%
+cd /D %SRC_DIR%
 
 rem コンパイル実行
 if not exist %SRC% (
 	echo Error: ソースファイルが見つかりません
-	cd ..
+	cd /D %~dp0
 	pause
 	goto END_MAKE
 )
 "C:\Program Files (x86)\PICC\Ccsc.exe" +FM +EW +T +A +G_DEVELOPMENTBOARD=1 %SRC%
-cd ..
+cd /D %~dp0
 
 rem コンパイル結果格納用フォルダを作成
 if not exist %BUILD_DIR%\ (

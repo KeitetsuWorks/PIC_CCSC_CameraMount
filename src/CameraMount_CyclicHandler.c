@@ -14,10 +14,7 @@
 #include "CommonDefine.h"
 
 #include "CameraMount_CyclicHandler.h"
-#include "CameraMount_LED.h"
-#include "CameraMount_Servo.h"
-#include "CameraMount_System.h"
-
+#include "CameraMount_FreeRunningTimer.h"
 
 /**
  * @name    周期ハンドラの実行制御
@@ -32,23 +29,23 @@ void CyclicHandler_init(void)
     CyclicHandler_slot = 0;
     
     // ペリフェラル設定
-    setup_timer_1(T1_INTERNAL | T1_DIV_BY_8);
+    setup_timer_0(RTCC_INTERNAL | RTCC_DIV_128);
     
-    // タイマ1の再開
-    set_timer1(TIMER1_INITIAL_VALUE);
+    // タイマ0の開始
+    set_timer0(TIMER0_INITIAL_VALUE);
     
     // 割込み設定
-    enable_interrupts(INT_TIMER1);
+    enable_interrupts(INT_RTCC);
     
     return;
 }
 
 
-#int_TIMER1
-void isr_TIMER1(void)
+#int_RTCC
+void isr_TIMER0(void)
 {
-    // タイマ1の再開
-    set_timer1(TIMER1_INITIAL_VALUE);
+    // タイマ0の再開
+    set_timer0(TIMER0_INITIAL_VALUE);
     
     // ウォッチドッグタイマの再開
     restart_wdt();
@@ -56,17 +53,32 @@ void isr_TIMER1(void)
     // タスクの実行
     switch (CyclicHandler_slot) {
         case 0:
-            System_execTask();
-            LED_ctrl();
+            // アプリケーション実行要求をセット
+            AppManager_setAppExecRequest();
+            
+            // フリーランニングタイマの更新
+            FreeRunningTimer_count();
             break;
         case 1:
-            PanServo_ctrl();
+            // アプリケーション実行要求をセット
+            AppManager_setAppExecRequest();
+            
+            // フリーランニングタイマの更新
+            FreeRunningTimer_count();
             break;
         case 2:
-            System_execTask();
+            // アプリケーション実行要求をセット
+            AppManager_setAppExecRequest();
+            
+            // フリーランニングタイマの更新
+            FreeRunningTimer_count();
             break;
         case 3:
-            TiltServo_ctrl();
+            // アプリケーション実行要求をセット
+            AppManager_setAppExecRequest();
+            
+            // フリーランニングタイマの更新
+            FreeRunningTimer_count();
             break;
         default:
             break;

@@ -47,6 +47,23 @@ void uart_tx_initBuffer(void)
 }
 
 
+void uart_tx_enable(void)
+{
+    enable_interrupts(INT_TBE);
+    
+    return;
+}
+
+
+void uart_tx_disable(void)
+{
+    disable_interrupts(INT_TBE);
+    
+    return;
+}
+
+
+#inline
 bool uart_tx_hasTransmitData(void)
 {
     bool uart_tx_buffer_status;
@@ -62,6 +79,7 @@ bool uart_tx_hasTransmitData(void)
 }
 
 
+#inline
 bool uart_tx_isFull(void)
 {
     bool uart_tx_buffer_full;
@@ -77,31 +95,25 @@ bool uart_tx_isFull(void)
 }
 
 
+#inline
 void uart_tx_addTransmitData(uint8_t uart_tx_data)
 {
-    uint8_t uart_tx_buffer_write_index_temp;
-    bool uart_tx_buffer_status;
-    
-    // 送信待ちデータの有無を確認
-    uart_tx_buffer_status = uart_tx_hasTransmitData();
-    
-    // 送信待ちデータの追加
-    uart_tx_buffer[uart_tx_buffer_write_index] = uart_tx_data;
-    uart_tx_buffer_write_index_temp = (uart_tx_buffer_write_index + 1) % UART_TX_BUFFER_SIZE;
-    uart_tx_buffer_count++;
-    
+    // 送信リングバッファが空くまで待機
     while (uart_tx_isFull() == TRUE) {
     }
-    uart_tx_buffer_write_index = uart_tx_buffer_write_index_temp;
     
-    if (uart_tx_buffer_status == FALSE) {
-        enable_interrupts(int_TBE);
-    }
+    // 送信待ちデータの追加
+    uart_tx_disable();
+    uart_tx_buffer[uart_tx_buffer_write_index] = uart_tx_data;
+    uart_tx_buffer_write_index = (uart_tx_buffer_write_index + 1) % UART_TX_BUFFER_SIZE;
+    uart_tx_buffer_count++;
+    uart_tx_enable();
     
     return;
 }
 
 
+#org 0x0800, 0x08FF DEFAULT
 #int_TBE
 void uart_tx_isr_TBE(void)
 {
@@ -111,11 +123,12 @@ void uart_tx_isr_TBE(void)
     uart_tx_buffer_count--;
     
     if (uart_tx_hasTransmitData() == FALSE) {
-        disable_interrupts(int_TBE);
+        uart_tx_disable();
     }
     
     return;
 }
+#org DEFAULT
 
 
 void uart_rx_initBuffer(void)
@@ -178,31 +191,30 @@ uint8_t uart_rx_getReceivedData(void)
 {
     uint8_t uart_rx_data;
     
+    // 受信待ち
     while (uart_rx_isReceived() != TRUE) {
     }
+    
+    uart_rx_disable();
     uart_rx_data = uart_rx_buffer[uart_rx_buffer_read_index];
     uart_rx_buffer_read_index = (uart_rx_buffer_read_index + 1) % UART_RX_BUFFER_SIZE;
     uart_rx_buffer_count--;
+    uart_rx_enable();
     
     return uart_rx_data;
 }
 
 
+#org 0x0900, 0x09FF DEFAULT
 #int_RDA
 void uart_rx_isr_RDA(void)
 {
-    uint8_t uart_rx_buffer_write_index_temp;
-    
-    uart_rx_buffer[uart_rx_buffer_write_index] = getc();
-    uart_rx_buffer_write_index_temp = uart_rx_buffer_write_index;
-    uart_rx_buffer_count++;
-    
-    if (uart_rx_isFull() == TRUE) {
-        uart_rx_buffer_write_index = uart_rx_buffer_write_index_temp;
-    }
-    else {
+    if (uart_rx_isFull() != TRUE) {
+        uart_rx_buffer[uart_rx_buffer_write_index] = getc();
         uart_rx_buffer_write_index = (uart_rx_buffer_write_index + 1) % UART_RX_BUFFER_SIZE;
+        uart_rx_buffer_count++;
     }
     
     return;
 }
+#org DEFAULT

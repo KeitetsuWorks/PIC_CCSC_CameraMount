@@ -15,6 +15,8 @@
 
 #include "CameraMount_LED.h"
 #include "CameraMount_System.h"
+#include "CameraMount_FreeRunningTimer.h"
+#include "CameraMount_EEPROM.h"
 
 
 uint8_t LED_system_state_prev;                  /*!< 前のシステムステート */
@@ -25,10 +27,6 @@ uint8_t LED_system_state_prev;                  /*!< 前のシステムステー
  */
 /*! @{ */
 bool PowerLED_ctrl_flag;                        /*!< 電源LEDの制御フラグ */
-uint16_t PowerLED_brightness;                   /*!< 電源LEDのPWMデューティ */
-uint16_t PowerLED_brightness_min;               /*!< 電源LEDの最小PWMデューティ */
-uint16_t PowerLED_brightness_max;               /*!< 電源LEDの最大PWMデューティ */
-uint8_t PowerLED_brightness_step;               /*!< 電源LEDのPWMデューティの増減幅 */
 /*! @} */
 
 
@@ -37,7 +35,7 @@ uint8_t PowerLED_brightness_step;               /*!< 電源LEDのPWMデューテ
  */
 /*! @{ */
 bool StatusLED_ctrl_flag;                       /*!< ステータスLEDの制御フラグ */
-uint8_t StatusLED_timer;                        /*!< ステータスLEDの制御タイマ */
+struct timer_5ms_t StatusLED_timer;             /*!< ステータスLEDの制御タイマ */
 uint8_t StatusLED_brink_period_COM_TIMEOUT;     /*!< ステータスLEDの点滅周期，通信タイムアウト */
 /*! @} */
 
@@ -47,7 +45,7 @@ uint8_t StatusLED_brink_period_COM_TIMEOUT;     /*!< ステータスLEDの点滅
  */
 /*! @{ */
 bool ErrorLED_ctrl_flag;                        /*!< エラーLEDの制御フラグ */
-uint8_t ErrorLED_timer;                         /*!< エラーLEDの制御タイマ */
+struct timer_5ms_t ErrorLED_timer;              /*!< エラーLEDの制御タイマ */
 uint8_t ErrorLED_brink_period;                  /*!< エラーLEDの点滅周期 */
 /*! @} */
 
@@ -65,10 +63,17 @@ static void PowerLED_ctrl(void);
 
 
 /**
- * @brief   電源LEDの輝度を設定する
+ * @brief   電源LEDを点灯する
  */
 #inline
-static void PowerLED_setBrightness(uint16_t brightness);
+static void PowerLED_on(void);
+
+
+/**
+ * @brief   電源LEDを消灯する
+ */
+#inline
+static void PowerLED_off(void);
 
 
 /**
@@ -153,13 +158,7 @@ void LED_ctrl(void)
 
 static void PowerLED_init(void)
 {
-    PowerLED_brightness_min = POWER_LED_BRIGHTNESS_MIN;
-    PowerLED_brightness_max = POWER_LED_BRIGHTNESS_MAX;
-    PowerLED_brightness_step = POWER_LED_BRIGHTNESS_STEP;
-    
-    PowerLED_brightness = PowerLED_brightness_min;
-    PowerLED_ctrl_flag = TRUE;
-    PowerLED_setBrightness(PowerLED_brightness);
+    PowerLED_on();
     
     return;
 }
@@ -167,31 +166,25 @@ static void PowerLED_init(void)
 
 static void PowerLED_ctrl(void)
 {
-    if (PowerLED_ctrl_flag == TRUE) {
-        PowerLED_brightness += PowerLED_brightness_step;
-        if (PowerLED_brightness >= PowerLED_brightness_max) {
-            PowerLED_brightness = PowerLED_brightness_max;
-            PowerLED_ctrl_flag = FALSE;
-        }
-    }
-    else {
-        PowerLED_brightness -= PowerLED_brightness_step;
-        if (PowerLED_brightness <= PowerLED_brightness_min) {
-            PowerLED_brightness = PowerLED_brightness_min;
-            PowerLED_ctrl_flag = TRUE;
-        }
-    }
-    
-    PowerLED_setBrightness(PowerLED_brightness);
+    return;
+}
+
+
+#inline
+static void PowerLED_on(void)
+{
+    output_high(POWER_LED_PIN);
+    PowerLED_ctrl_flag = ON;
     
     return;
 }
 
 
 #inline
-static void PowerLED_setBrightness(uint16_t brightness)
+static void PowerLED_off(void)
 {
-    set_pwm1_duty(brightness);
+    output_low(POWER_LED_PIN);
+    PowerLED_ctrl_flag = OFF;
     
     return;
 }
@@ -199,8 +192,8 @@ static void PowerLED_setBrightness(uint16_t brightness)
 
 static void StatusLED_init(void)
 {
-    StatusLED_timer = 0;
-    StatusLED_brink_period_COM_TIMEOUT = STATUS_LED_BRINK_PERIOD_COM_TIMEOUT;
+    EEPROM_read(EEPROM_STATUS_LED_BRINK_PERIOD_COM_TIMEOUT, &StatusLED_brink_period_COM_TIMEOUT);
+    FreeRunningTimer_5ms_isTimeout(&StatusLED_timer, FALSE, StatusLED_brink_period_COM_TIMEOUT);
     
     StatusLED_off();
     
@@ -210,17 +203,20 @@ static void StatusLED_init(void)
 
 static void StatusLED_ctrl(void)
 {
+    bool retval;
+    
     switch (System_getState()) {
         case SYSTEM_INITIALIZATION: // 初期化中
-            StatusLED_timer = 0;
+            FreeRunningTimer_5ms_isTimeout(&StatusLED_timer, FALSE, StatusLED_brink_period_COM_TIMEOUT);
             
             StatusLED_on();
             break;
         case SYSTEM_RUN:            // 動作中
         case SYSTEM_HALT:           // 停止中
             if ((System_getStatus() & SYSTEM_STATUS_COM_TIMEOUT) != 0x00) {
-                if (StatusLED_timer >= StatusLED_brink_period_COM_TIMEOUT) {
-                    StatusLED_timer = 0;
+                retval = FreeRunningTimer_5ms_isTimeout(&StatusLED_timer, TRUE, StatusLED_brink_period_COM_TIMEOUT);
+                if (retval == TRUE) {
+                    FreeRunningTimer_5ms_isTimeout(&StatusLED_timer, FALSE, StatusLED_brink_period_COM_TIMEOUT);
                     
                     if (StatusLED_ctrl_flag == ON) {
                         StatusLED_off();
@@ -228,19 +224,17 @@ static void StatusLED_ctrl(void)
                     else {
                         StatusLED_on();
                     }
-                }
-                else {
-                    StatusLED_timer++;
+                    FreeRunningTimer_5ms_isTimeout(&StatusLED_timer, TRUE, StatusLED_brink_period_COM_TIMEOUT);
                 }
             }
             else {
-                StatusLED_timer = 0;
+                FreeRunningTimer_5ms_isTimeout(&StatusLED_timer, FALSE, StatusLED_brink_period_COM_TIMEOUT);
                 
                 StatusLED_on();
             }
             break;
         default:
-            StatusLED_timer = 0;
+            FreeRunningTimer_5ms_isTimeout(&StatusLED_timer, FALSE, StatusLED_brink_period_COM_TIMEOUT);
             
             StatusLED_off();
             break;
@@ -272,8 +266,8 @@ static void StatusLED_off(void)
 
 static void ErrorLED_init(void)
 {
-    ErrorLED_timer = 0;
-    ErrorLED_brink_period = ERROR_LED_BRINK_PERIOD;
+    EEPROM_read(EEPROM_ERROR_LED_BRINK_PERIOD, &ErrorLED_brink_period);
+    FreeRunningTimer_5ms_isTimeout(&ErrorLED_timer, FALSE, ErrorLED_brink_period);
     
     ErrorLED_off();
     
@@ -283,17 +277,20 @@ static void ErrorLED_init(void)
 
 static void ErrorLED_ctrl(void)
 {
+    bool retval;
+    
     switch (System_getState()) {
         case SYSTEM_INITIALIZATION: // 初期化中
-            ErrorLED_timer = 0;
+            FreeRunningTimer_5ms_isTimeout(&ErrorLED_timer, FALSE, ErrorLED_brink_period);
             
             ErrorLED_off();
             break;
         case SYSTEM_RUN:            // 動作中
         case SYSTEM_HALT:           // 停止中
             if (System_getError() != 0x00) {
-                if (ErrorLED_timer >= ErrorLED_brink_period) {
-                    ErrorLED_timer = 0;
+                retval = FreeRunningTimer_5ms_isTimeout(&ErrorLED_timer, TRUE, ErrorLED_brink_period);
+                if (retval == TRUE) {
+                    FreeRunningTimer_5ms_isTimeout(&ErrorLED_timer, FALSE, ErrorLED_brink_period);
                     
                     if (ErrorLED_ctrl_flag == ON) {
                         ErrorLED_off();
@@ -301,19 +298,17 @@ static void ErrorLED_ctrl(void)
                     else {
                         ErrorLED_on();
                     }
-                }
-                else {
-                    ErrorLED_timer++;
+                    FreeRunningTimer_5ms_isTimeout(&ErrorLED_timer, TRUE, ErrorLED_brink_period);
                 }
             }
             else {
-                ErrorLED_timer = 0;
+                FreeRunningTimer_5ms_isTimeout(&ErrorLED_timer, FALSE, ErrorLED_brink_period);
                 
                 ErrorLED_off();
             }
             break;
         default:
-            ErrorLED_timer = 0;
+            FreeRunningTimer_5ms_isTimeout(&ErrorLED_timer, FALSE, ErrorLED_brink_period);
             
             ErrorLED_off();
             break;

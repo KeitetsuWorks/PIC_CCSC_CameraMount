@@ -12,12 +12,15 @@
 
 #include "CommonDataType.h"
 #include "CommonDefine.h"
+#include "ccsc_uart.h"
 
 #include "CameraMount_Main.h"
-#include "CameraMount_LED.h"
-#include "CameraMount_Servo.h"
 #include "CameraMount_System.h"
-#include "CameraMount_CyclicHandler.h"
+#include "CameraMount_AppManager.h"
+#include "CameraMount_EEPROM.h"
+
+
+#priority TIMER1, CCP1, RDA, TBE, EEPROM, RTCC
 
 
 void initDevice(void)
@@ -26,7 +29,7 @@ void initDevice(void)
     // 出力ピンの初期化
     output_a(0x00);
     output_b(0x00);
-    output_c(0x01);
+    output_c(0x00);
     output_d(0x00);
     output_e(0x00);
 
@@ -37,15 +40,19 @@ void initDevice(void)
     set_tris_d(0x00);
     set_tris_e(0x00);
 
+    // 割込み無効化
+    disable_interrupts(GLOBAL);
+
     // ペリフェラル設定
     setup_adc_ports(NO_ANALOGS);
     setup_adc(ADC_OFF);
     setup_psp(PSP_DISABLED);
     setup_spi(FALSE);
-    setup_timer_0(RTCC_INTERNAL | RTCC_DIV_64);
+    setup_timer_0(RTCC_INTERNAL | RTCC_DIV_128);
     setup_timer_1(T1_INTERNAL | T1_DIV_BY_8);
-    setup_timer_2(T2_DIV_BY_1, 255, 1);
-    setup_ccp1(CCP_PWM);
+    setup_timer_2(T2_DISABLED, 255, 1);
+    setup_ccp1(CCP_COMPARE_INT);
+    setup_ccp2(CCP_OFF);
     setup_comparator(NC_NC_NC_NC);
     setup_vref(FALSE);
 #else
@@ -57,14 +64,17 @@ void initDevice(void)
     set_tris_a(0x00);
     set_tris_b(0x00);
 
+    // 割込み無効化
+    disable_interrupts(GLOBAL);
+
     // ペリフェラル設定
     setup_adc_ports(NO_ANALOGS);
     setup_adc(ADC_OFF);
     setup_spi(FALSE);
-    setup_timer_0(RTCC_INTERNAL | RTCC_DIV_64);
+    setup_timer_0(RTCC_INTERNAL | RTCC_DIV_128);
     setup_timer_1(T1_INTERNAL | T1_DIV_BY_8);
-    setup_timer_2(T2_DIV_BY_1, 255, 1);
-    setup_ccp1(CCP_PWM);
+    setup_timer_2(T2_DISABLED, 255, 1);
+    setup_ccp1(CCP_COMPARE_INT);
     setup_comparator(NC_NC_NC_NC);
     setup_vref(FALSE);
 #endif
@@ -77,20 +87,22 @@ void main(void)
 {
     // デバイスの初期化
     initDevice();
-    LED_init();
-    Servo_init();
     
-    // システムの初期化
+    // デバイス制御の初期化（システムステート非依存）
+    uart_tx_initBuffer();
+    uart_rx_initBuffer();
+    uart_rx_disable();
+    EEPROM_init();
+    
+    // システム制御の初期化
     System_init();
     
-    // 周期ハンドラの初期化
-    CyclicHandler_init();
-    
-    // 割込み設定
-    enable_interrupts(GLOBAL);
+    // アプリケーションマネージャの初期化
+    AppManager_init();
     
     // 無限ループ
     while (TRUE) {
+        AppManager_exec();
     }
     
     return;

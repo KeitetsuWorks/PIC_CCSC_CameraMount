@@ -24,20 +24,17 @@ const struct register_t Register_table[] = {
     {   (uint8_t *)(&System_state),                         1,  FALSE   },
     {   (uint8_t *)(&System_status),                        1,  TRUE    },
     {   (uint8_t *)(&System_error),                         1,  TRUE    },
-    {   (uint8_t *)(&(PanServo.request_position)),          1,  TRUE    },
-    {   (uint8_t *)(&(PanServo.neutral_position)),          1,  TRUE    },
-    {   (uint8_t *)(&(PanServo.min_position)),              1,  TRUE    },
-    {   (uint8_t *)(&(PanServo.max_position)),              1,  TRUE    },
-    {   (uint8_t *)(&(TiltServo.request_position)),         1,  TRUE    },
-    {   (uint8_t *)(&(TiltServo.neutral_position)),         1,  TRUE    },
-    {   (uint8_t *)(&(TiltServo.min_position)),             1,  TRUE    },
-    {   (uint8_t *)(&(TiltServo.max_position)),             1,  TRUE    },
-    {   (uint8_t *)(&PowerLED_brightness_min),              2,  TRUE    },
-    {   (uint8_t *)(&PowerLED_brightness_max),              2,  TRUE    },
-    {   (uint8_t *)(&PowerLED_brightness_step),             1,  TRUE    },
+    {   (uint8_t *)(&(PanServo.request_position)),          2,  TRUE    },
+    {   (uint8_t *)(&(PanServo.neutral_position)),          2,  TRUE    },
+    {   (uint8_t *)(&(PanServo.min_position)),              2,  TRUE    },
+    {   (uint8_t *)(&(PanServo.max_position)),              2,  TRUE    },
+    {   (uint8_t *)(&(TiltServo.request_position)),         2,  TRUE    },
+    {   (uint8_t *)(&(TiltServo.neutral_position)),         2,  TRUE    },
+    {   (uint8_t *)(&(TiltServo.min_position)),             2,  TRUE    },
+    {   (uint8_t *)(&(TiltServo.max_position)),             2,  TRUE    },
     {   (uint8_t *)(&StatusLED_brink_period_COM_TIMEOUT),   1,  TRUE    },
     {   (uint8_t *)(&ErrorLED_brink_period),                1,  TRUE    },
-    {   (uint8_t *)(&com_timeout_limit),                    2,  TRUE    }
+    {   (uint8_t *)(&com_timeout_limit),                    1,  TRUE    }
 };
 
 
@@ -88,6 +85,8 @@ uint8_t Register_write(
     uint8_t *write_data;
     uint8_t write_count;
     
+    disable_interrupts(GLOBAL);
+    
     write_data = (uint8_t *)data;
     write_count = 0;
     
@@ -101,6 +100,8 @@ uint8_t Register_write(
             write_count++;
         }
     }
+    
+    enable_interrupts(GLOBAL);
     
     return write_count;
 }

@@ -27,13 +27,10 @@
 #define REGISTER_TILT_SERVO_NEUTRAL_POSITION                    8       /*!< 垂直方向用サーボ，ニュートラル位置 */
 #define REGISTER_TILT_SERVO_MIN_POSITION                        9       /*!< 垂直方向用サーボ，最小位置 */
 #define REGISTER_TILT_SERVO_MAX_POSITION                        10      /*!< 垂直方向用サーボ，最大位置 */
-#define REGISTER_POWER_LED_BRIGHTNESS_MIN                       11      /*!< 電源LEDの最小PWMデューティ */
-#define REGISTER_POWER_LED_BRIGHTNESS_MAX                       12      /*!< 電源LEDの最大PWMデューティ */
-#define REGISTER_POWER_LED_BRIGHTNESS_STEP                      13      /*!< 電源LEDのPWMデューティの増減幅 */
-#define REGISTER_STATUS_LED_BRINK_PERIOD_COM_TIMEOUT            14      /*!< ステータスLEDの点滅周期，通信タイムアウト */
-#define REGISTER_ERROR_LED_BRINK_PERIOD                         15      /*!< エラーLEDの点滅周期 */
-#define REGISTER_COM_TIMEOUT_LIMIT                              16      /*!< 通信タイムアウト検出時間 */
-#define REGISTER_INDEX_NUM                                      17      /*!< レジスタインデックスの数 */
+#define REGISTER_STATUS_LED_BRINK_PERIOD_COM_TIMEOUT            11      /*!< ステータスLEDの点滅周期，通信タイムアウト */
+#define REGISTER_ERROR_LED_BRINK_PERIOD                         12      /*!< エラーLEDの点滅周期 */
+#define REGISTER_COM_TIMEOUT_LIMIT                              13      /*!< 通信タイムアウト検出時間 */
+#define REGISTER_INDEX_NUM                                      14      /*!< レジスタインデックスの数 */
 /*! @} */
 
 

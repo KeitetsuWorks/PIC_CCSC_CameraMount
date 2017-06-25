@@ -21,18 +21,15 @@
  * @brief   EEPROMテーブル
  */
 const struct eeprom_t EEPROM_table[] = {
-    {   EEPROM_ADDR_PAN_SERVO_NEUTRAL_POSITION,             EEPROM_SIZE_PAN_SERVO_NEUTRAL_POSITION,             TRUE    },
-    {   EEPROM_ADDR_PAN_SERVO_MIN_POSITION,                 EEPROM_SIZE_PAN_SERVO_MIN_POSITION,                 TRUE    },
-    {   EEPROM_ADDR_PAN_SERVO_MAX_POSITION,                 EEPROM_SIZE_PAN_SERVO_MAX_POSITION,                 TRUE    },
-    {   EEPROM_ADDR_TILT_SERVO_NEUTRAL_POSITION,            EEPROM_SIZE_TILT_SERVO_NEUTRAL_POSITION,            TRUE    },
-    {   EEPROM_ADDR_TILT_SERVO_MIN_POSITION,                EEPROM_SIZE_TILT_SERVO_MIN_POSITION,                TRUE    },
-    {   EEPROM_ADDR_TILT_SERVO_MAX_POSITION,                EEPROM_SIZE_TILT_SERVO_MAX_POSITION,                TRUE    },
-    {   EEPROM_ADDR_POWER_LED_BRIGHTNESS_MIN_L,             EEPROM_SIZE_POWER_LED_BRIGHTNESS_MIN,               TRUE    },
-    {   EEPROM_ADDR_POWER_LED_BRIGHTNESS_MAX_L,             EEPROM_SIZE_POWER_LED_BRIGHTNESS_MAX,               TRUE    },
-    {   EEPROM_ADDR_POWER_LED_BRIGHTNESS_STEP,              EEPROM_SIZE_POWER_LED_BRIGHTNESS_STEP,              TRUE    },
+    {   EEPROM_ADDR_PAN_SERVO_NEUTRAL_POSITION_L,           EEPROM_SIZE_PAN_SERVO_NEUTRAL_POSITION,             TRUE    },
+    {   EEPROM_ADDR_PAN_SERVO_MIN_POSITION_L,               EEPROM_SIZE_PAN_SERVO_MIN_POSITION,                 TRUE    },
+    {   EEPROM_ADDR_PAN_SERVO_MAX_POSITION_L,               EEPROM_SIZE_PAN_SERVO_MAX_POSITION,                 TRUE    },
+    {   EEPROM_ADDR_TILT_SERVO_NEUTRAL_POSITION_L,          EEPROM_SIZE_TILT_SERVO_NEUTRAL_POSITION,            TRUE    },
+    {   EEPROM_ADDR_TILT_SERVO_MIN_POSITION_L,              EEPROM_SIZE_TILT_SERVO_MIN_POSITION,                TRUE    },
+    {   EEPROM_ADDR_TILT_SERVO_MAX_POSITION_L,              EEPROM_SIZE_TILT_SERVO_MAX_POSITION,                TRUE    },
     {   EEPROM_ADDR_STATUS_LED_BRINK_PERIOD_COM_TIMEOUT,    EEPROM_SIZE_STATUS_LED_BRINK_PERIOD_COM_TIMEOUT,    TRUE    },
     {   EEPROM_ADDR_ERROR_LED_BRINK_PERIOD,                 EEPROM_SIZE_ERROR_LED_BRINK_PERIOD,                 TRUE    },
-    {   EEPROM_ADDR_COM_TIMEOUT_LIMIT_L,                    EEPROM_SIZE_COM_TIMEOUT_LIMIT,                      TRUE    }
+    {   EEPROM_ADDR_COM_TIMEOUT_LIMIT,                      EEPROM_SIZE_COM_TIMEOUT_LIMIT,                      TRUE    }
 };
 
 
@@ -74,11 +71,13 @@ uint8_t EEPROM_read(
     read_buffer = (uint8_t *)data;
     read_count = 0;
     
-    if (index < EEPROM_INDEX_NUM) {
-        while (read_count < EEPROM_table[index].size) {
-            *read_buffer = read_eeprom(EEPROM_table[index].addr + read_count);
-            read_buffer++;
-            read_count++;
+    if (EEPROM_isWriting() == FALSE) {
+        if (index < EEPROM_INDEX_NUM) {
+            while (read_count < EEPROM_table[index].size) {
+                *read_buffer = read_eeprom(EEPROM_table[index].addr + read_count);
+                read_buffer++;
+                read_count++;
+            }
         }
     }
     
@@ -116,7 +115,7 @@ bool EEPROM_write(
             EEPROM_write_count = 0;
             
             write_eeprom((EEPROM_table[EEPROM_write_index].addr + EEPROM_write_count), EEPROM_write_buffer[EEPROM_write_count]);
-            enable_interrupts(int_EEPROM);
+            enable_interrupts(INT_EEPROM);
             eeprom_writing = TRUE;
             result = TRUE;
         }
@@ -132,6 +131,7 @@ bool EEPROM_write(
 }
 
 
+#org 0x0A00, 0xAFF DEFAULT
 #int_EEPROM
 void isr_EEPROM(void)
 {
@@ -141,9 +141,10 @@ void isr_EEPROM(void)
         write_eeprom((EEPROM_table[EEPROM_write_index].addr + EEPROM_write_count), EEPROM_write_buffer[EEPROM_write_count]);
     }
     else {
-        disable_interrupts(int_EEPROM);
+        disable_interrupts(INT_EEPROM);
         eeprom_writing = FALSE;
     }
     
     return;
 }
+#org DEFAULT

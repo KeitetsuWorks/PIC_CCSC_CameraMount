@@ -13,32 +13,7 @@
 
 
 /**
- * @name    システムコマンド
- */
-/*! @{ */
-#define SYSTEM_COMMAND_LENGTH_MAX               6       /*!< 最大コマンド長 */
-#define SYSTEM_COMMAND_MASK_OPCODE              0xF0    /*!< コマンドマスク: オペコード */
-#define SYSTEM_COMMAND_MASK_LENGTH              0x0F    /*!< コマンドマスク: コマンド長 */
-#define SYSTEM_COMMAND_RESET                    0x0     /*!< オペコード: ソフトウェアリセット */
-#define SYSTEM_COMMAND_INITIALIZE               0x1     /*!< オペコード: システム初期化 */
-#define SYSTEM_COMMAND_GET_VERSION              0x2     /*!< オペコード: バージョン情報取得 */
-#define SYSTEM_COMMAND_READ_REGISTER            0x4     /*!< オペコード: レジスタ読込み */
-#define SYSTEM_COMMAND_WRITE_REGISTER           0x5     /*!< オペコード: レジスタ書込み */
-#define SYSTEM_COMMAND_READ_EEPROM              0x6     /*!< オペコード: EEPROM読込み */
-#define SYSTEM_COMMAND_WRITE_EEPROM             0x7     /*!< オペコード: EEPROM書込み */
-/*! @} */
-
-
-/**
- * @name    システムレスポンス
- */
-/*! @{ */
-#define SYSTEM_RESPONSE_LENGTH_MAX              6       /*!< 最大レスポンス長 */
-/*! @} */
-
-
-/**
- * @name    システムステータス
+ * @name    システムステータスフラグ
  */
 /*! @{ */
 #define SYSTEM_STATUS_WDT_TIMEOUT               0x01    /*!< ウォッチドッグタイムアウト */
@@ -47,7 +22,7 @@
 
 
 /**
- * @name    システムエラー
+ * @name    システムエラーフラグ
  */
 /*! @{ */
 #define SYSTEM_ERROR_INVALID_COMMAND            0x01    /*!< 無効なコマンド */
@@ -82,6 +57,13 @@ uint8_t System_getStatus(void);
 
 
 /**
+ * @brief   システムステータスフラグをセットする
+ * @param[in]       system_status_flag  システムステータスフラグ
+ */
+void System_setStatus(uint8_t system_status_flag);
+
+
+/**
  * @brief   システムエラーを取得する
  * @return          システムエラー
  */
@@ -90,13 +72,32 @@ uint8_t System_getError(void);
 
 
 /**
- * @brief   システムを初期化する
+ * @brief   システムエラーフラグをセットする
+ * @param[in]       system_error_flag   システムエラーフラグ
+ */
+void System_setError(uint8_t system_error_flag);
+
+
+/**
+ * @brief   システム初期化要求をセットする
+ */
+void System_setInitializationRequest(void);
+
+
+/**
+ * @brief   システム初期化要求をクリアする
+ */
+void System_clearInitializationRequest(void);
+
+
+/**
+ * @brief   システム制御を初期化する
  */
 void System_init(void);
 
 
 /**
- * @brief   システムタスクを実行する
+ * @brief   システム制御タスクを実行する
  */
 void System_execTask(void);
 

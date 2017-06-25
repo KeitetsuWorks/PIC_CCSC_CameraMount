@@ -13,7 +13,7 @@
 
 
 #ifndef CAMERAMOUNT_VERSION
-#define CAMERAMOUNT_VERSION     1       /*!< バージョン */
+#define CAMERAMOUNT_VERSION     2       /*!< バージョン */
 #endif
 
 #ifndef CAMERAMOUNT_REVISION

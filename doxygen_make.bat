@@ -18,7 +18,6 @@ set DOXYGEN_RTF_DIR=.\rtf
 
 if not exist %DOXYGEN_CONFIG_FILE% (
 	echo Error: Ý’èƒtƒ@ƒCƒ‹‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñ
-	cd ..
 	pause
 	goto END_MAKE
 )

@@ -16,21 +16,21 @@
  * @name    EEPROMアドレス
  */
 /*! @{ */
-#define EEPROM_ADDR_PAN_SERVO_NEUTRAL_POSITION                  0x00    /*!< 水平方向用サーボ，ニュートラル位置 */
-#define EEPROM_ADDR_PAN_SERVO_MIN_POSITION                      0x01    /*!< 水平方向用サーボ，最小位置 */
-#define EEPROM_ADDR_PAN_SERVO_MAX_POSITION                      0x02    /*!< 水平方向用サーボ，最大位置 */
-#define EEPROM_ADDR_TILT_SERVO_NEUTRAL_POSITION                 0x03    /*!< 垂直方向用サーボ，ニュートラル位置 */
-#define EEPROM_ADDR_TILT_SERVO_MIN_POSITION                     0x04    /*!< 垂直方向用サーボ，最小位置 */
-#define EEPROM_ADDR_TILT_SERVO_MAX_POSITION                     0x05    /*!< 垂直方向用サーボ，最大位置 */
-#define EEPROM_ADDR_POWER_LED_BRIGHTNESS_MIN_L                  0x06    /*!< 電源LEDの最小PWMデューティ，下位8bit */
-#define EEPROM_ADDR_POWER_LED_BRIGHTNESS_MIN_H                  0x07    /*!< 電源LEDの最小PWMデューティ，上位8bit */
-#define EEPROM_ADDR_POWER_LED_BRIGHTNESS_MAX_L                  0x08    /*!< 電源LEDの最大PWMデューティ，下位8bit */
-#define EEPROM_ADDR_POWER_LED_BRIGHTNESS_MAX_H                  0x09    /*!< 電源LEDの最大PWMデューティ，上位8bit */
-#define EEPROM_ADDR_POWER_LED_BRIGHTNESS_STEP                   0x0A    /*!< 電源LEDのPWMデューティの増減幅 */
-#define EEPROM_ADDR_STATUS_LED_BRINK_PERIOD_COM_TIMEOUT         0x0B    /*!< ステータスLEDの点滅周期，通信タイムアウト */
-#define EEPROM_ADDR_ERROR_LED_BRINK_PERIOD                      0x0C    /*!< エラーLEDの点滅周期 */
-#define EEPROM_ADDR_COM_TIMEOUT_LIMIT_L                         0x0D    /*!< 通信タイムアウト検出時間，下位8bit */
-#define EEPROM_ADDR_COM_TIMEOUT_LIMIT_H                         0x0E    /*!< 通信タイムアウト検出時間，上位8bit */
+#define EEPROM_ADDR_PAN_SERVO_NEUTRAL_POSITION_L                0x00    /*!< 水平方向用サーボ，ニュートラル位置，下位8bit */
+#define EEPROM_ADDR_PAN_SERVO_NEUTRAL_POSITION_H                0x01    /*!< 水平方向用サーボ，ニュートラル位置，上位8bit */
+#define EEPROM_ADDR_PAN_SERVO_MIN_POSITION_L                    0x02    /*!< 水平方向用サーボ，最小位置，下位8bit */
+#define EEPROM_ADDR_PAN_SERVO_MIN_POSITION_H                    0x03    /*!< 水平方向用サーボ，最小位置，上位8bit */
+#define EEPROM_ADDR_PAN_SERVO_MAX_POSITION_L                    0x04    /*!< 水平方向用サーボ，最大位置，下位8bit */
+#define EEPROM_ADDR_PAN_SERVO_MAX_POSITION_H                    0x05    /*!< 水平方向用サーボ，最大位置，上位8bit */
+#define EEPROM_ADDR_TILT_SERVO_NEUTRAL_POSITION_L               0x06    /*!< 垂直方向用サーボ，ニュートラル位置，下位8bit */
+#define EEPROM_ADDR_TILT_SERVO_NEUTRAL_POSITION_H               0x07    /*!< 垂直方向用サーボ，ニュートラル位置，上位8bit */
+#define EEPROM_ADDR_TILT_SERVO_MIN_POSITION_L                   0x08    /*!< 垂直方向用サーボ，最小位置，下位8bit */
+#define EEPROM_ADDR_TILT_SERVO_MIN_POSITION_H                   0x09    /*!< 垂直方向用サーボ，最小位置，上位8bit */
+#define EEPROM_ADDR_TILT_SERVO_MAX_POSITION_L                   0x0A    /*!< 垂直方向用サーボ，最大位置，下位8bit */
+#define EEPROM_ADDR_TILT_SERVO_MAX_POSITION_H                   0x0B    /*!< 垂直方向用サーボ，最大位置，上位8bit */
+#define EEPROM_ADDR_STATUS_LED_BRINK_PERIOD_COM_TIMEOUT         0x0C    /*!< ステータスLEDの点滅周期，通信タイムアウト */
+#define EEPROM_ADDR_ERROR_LED_BRINK_PERIOD                      0x0D    /*!< エラーLEDの点滅周期 */
+#define EEPROM_ADDR_COM_TIMEOUT_LIMIT                           0x0E    /*!< 通信タイムアウト検出時間 */
 /*! @} */
 
 
@@ -38,21 +38,21 @@
  * @name    EEPROMデータ初期値
  */
 /*! @{ */
-#define EEPROM_INIT_PAN_SERVO_NEUTRAL_POSITION                  125     /*!< 水平方向用サーボ，ニュートラル位置 */
-#define EEPROM_INIT_PAN_SERVO_MIN_POSITION                      47      /*!< 水平方向用サーボ，最小位置 */
-#define EEPROM_INIT_PAN_SERVO_MAX_POSITION                      195     /*!< 水平方向用サーボ，最大位置 */
-#define EEPROM_INIT_TILT_SERVO_NEUTRAL_POSITION                 125     /*!< 垂直方向用サーボ，ニュートラル位置 */
-#define EEPROM_INIT_TILT_SERVO_MIN_POSITION                     47      /*!< 垂直方向用サーボ，最小位置 */
-#define EEPROM_INIT_TILT_SERVO_MAX_POSITION                     195     /*!< 垂直方向用サーボ，最大位置 */
-#define EEPROM_INIT_POWER_LED_BRIGHTNESS_MIN_L                  0x10    /*!< 電源LEDの最小PWMデューティ，下位8bit */
-#define EEPROM_INIT_POWER_LED_BRIGHTNESS_MIN_H                  0x00    /*!< 電源LEDの最小PWMデューティ，上位8bit */
-#define EEPROM_INIT_POWER_LED_BRIGHTNESS_MAX_L                  0xFF    /*!< 電源LEDの最大PWMデューティ，下位8bit */
-#define EEPROM_INIT_POWER_LED_BRIGHTNESS_MAX_H                  0x01    /*!< 電源LEDの最大PWMデューティ，上位8bit */
-#define EEPROM_INIT_POWER_LED_BRIGHTNESS_STEP                   4       /*!< 電源LEDのPWMデューティの増減幅 */
-#define EEPROM_INIT_STATUS_LED_BRINK_PERIOD_COM_TIMEOUT         50      /*!< ステータスLEDの点滅周期，通信タイムアウト */
-#define EEPROM_INIT_ERROR_LED_BRINK_PERIOD                      25      /*!< エラーLEDの点滅周期 */
-#define EEPROM_INIT_COM_TIMEOUT_LIMIT_L                         0x70    /*!< 通信タイムアウト検出時間，下位8bit */
-#define EEPROM_INIT_COM_TIMEOUT_LIMIT_H                         0x17    /*!< 通信タイムアウト検出時間，上位8bit */
+#define EEPROM_INIT_PAN_SERVO_NEUTRAL_POSITION_L                0x40    /*!< 水平方向用サーボ，ニュートラル位置，下位8bit */
+#define EEPROM_INIT_PAN_SERVO_NEUTRAL_POSITION_H                0xEB    /*!< 水平方向用サーボ，ニュートラル位置，上位8bit */
+#define EEPROM_INIT_PAN_SERVO_MIN_POSITION_L                    0x4C    /*!< 水平方向用サーボ，最小位置，下位8bit */
+#define EEPROM_INIT_PAN_SERVO_MIN_POSITION_H                    0xE9    /*!< 水平方向用サーボ，最小位置，上位8bit */
+#define EEPROM_INIT_PAN_SERVO_MAX_POSITION_L                    0x34    /*!< 水平方向用サーボ，最大位置，下位8bit */
+#define EEPROM_INIT_PAN_SERVO_MAX_POSITION_H                    0xED    /*!< 水平方向用サーボ，最大位置，上位8bit */
+#define EEPROM_INIT_TILT_SERVO_NEUTRAL_POSITION_L               0x40    /*!< 垂直方向用サーボ，ニュートラル位置，下位8bit */
+#define EEPROM_INIT_TILT_SERVO_NEUTRAL_POSITION_H               0xEB    /*!< 垂直方向用サーボ，ニュートラル位置，上位8bit */
+#define EEPROM_INIT_TILT_SERVO_MIN_POSITION_L                   0x4C    /*!< 垂直方向用サーボ，最小位置，下位8bit */
+#define EEPROM_INIT_TILT_SERVO_MIN_POSITION_H                   0xE9    /*!< 垂直方向用サーボ，最小位置，上位8bit */
+#define EEPROM_INIT_TILT_SERVO_MAX_POSITION_L                   0x34    /*!< 垂直方向用サーボ，最大位置，下位8bit */
+#define EEPROM_INIT_TILT_SERVO_MAX_POSITION_H                   0xED    /*!< 垂直方向用サーボ，最大位置，上位8bit */
+#define EEPROM_INIT_STATUS_LED_BRINK_PERIOD_COM_TIMEOUT         200     /*!< ステータスLEDの点滅周期，通信タイムアウト */
+#define EEPROM_INIT_ERROR_LED_BRINK_PERIOD                      100     /*!< エラーLEDの点滅周期 */
+#define EEPROM_INIT_COM_TIMEOUT_LIMIT                           60      /*!< 通信タイムアウト検出時間 */
 /*! @} */
 
 
@@ -61,18 +61,15 @@
  */
 /*! @{ */
 #define EEPROM_SIZE_MAX                                         4       /*!< 最大サイズ */
-#define EEPROM_SIZE_PAN_SERVO_NEUTRAL_POSITION                  1       /*!< 水平方向用サーボ，ニュートラル位置 */
-#define EEPROM_SIZE_PAN_SERVO_MIN_POSITION                      1       /*!< 水平方向用サーボ，最小位置 */
-#define EEPROM_SIZE_PAN_SERVO_MAX_POSITION                      1       /*!< 水平方向用サーボ，最大位置 */
-#define EEPROM_SIZE_TILT_SERVO_NEUTRAL_POSITION                 1       /*!< 垂直方向用サーボ，ニュートラル位置 */
-#define EEPROM_SIZE_TILT_SERVO_MIN_POSITION                     1       /*!< 垂直方向用サーボ，最小位置 */
-#define EEPROM_SIZE_TILT_SERVO_MAX_POSITION                     1       /*!< 垂直方向用サーボ，最大位置 */
-#define EEPROM_SIZE_POWER_LED_BRIGHTNESS_MIN                    2       /*!< 電源LEDの最小PWMデューティ */
-#define EEPROM_SIZE_POWER_LED_BRIGHTNESS_MAX                    2       /*!< 電源LEDの最大PWMデューティ */
-#define EEPROM_SIZE_POWER_LED_BRIGHTNESS_STEP                   1       /*!< 電源LEDのPWMデューティの増減幅 */
+#define EEPROM_SIZE_PAN_SERVO_NEUTRAL_POSITION                  2       /*!< 水平方向用サーボ，ニュートラル位置 */
+#define EEPROM_SIZE_PAN_SERVO_MIN_POSITION                      2       /*!< 水平方向用サーボ，最小位置 */
+#define EEPROM_SIZE_PAN_SERVO_MAX_POSITION                      2       /*!< 水平方向用サーボ，最大位置 */
+#define EEPROM_SIZE_TILT_SERVO_NEUTRAL_POSITION                 2       /*!< 垂直方向用サーボ，ニュートラル位置 */
+#define EEPROM_SIZE_TILT_SERVO_MIN_POSITION                     2       /*!< 垂直方向用サーボ，最小位置 */
+#define EEPROM_SIZE_TILT_SERVO_MAX_POSITION                     2       /*!< 垂直方向用サーボ，最大位置 */
 #define EEPROM_SIZE_STATUS_LED_BRINK_PERIOD_COM_TIMEOUT         1       /*!< ステータスLEDの点滅周期，通信タイムアウト */
 #define EEPROM_SIZE_ERROR_LED_BRINK_PERIOD                      1       /*!< エラーLEDの点滅周期 */
-#define EEPROM_SIZE_COM_TIMEOUT_LIMIT                           2       /*!< 通信タイムアウト検出時間 */
+#define EEPROM_SIZE_COM_TIMEOUT_LIMIT                           1       /*!< 通信タイムアウト検出時間 */
 /*! @} */
 
 
@@ -86,13 +83,10 @@
 #define EEPROM_TILT_SERVO_NEUTRAL_POSITION                      3       /*!< 垂直方向用サーボ，ニュートラル位置 */
 #define EEPROM_TILT_SERVO_MIN_POSITION                          4       /*!< 垂直方向用サーボ，最小位置 */
 #define EEPROM_TILT_SERVO_MAX_POSITION                          5       /*!< 垂直方向用サーボ，最大位置 */
-#define EEPROM_POWER_LED_BRIGHTNESS_MIN                         6       /*!< 電源LEDの最小PWMデューティ */
-#define EEPROM_POWER_LED_BRIGHTNESS_MAX                         7       /*!< 電源LEDの最大PWMデューティ */
-#define EEPROM_POWER_LED_BRIGHTNESS_STEP                        8       /*!< 電源LEDのPWMデューティの増減幅 */
-#define EEPROM_STATUS_LED_BRINK_PERIOD_COM_TIMEOUT              9       /*!< ステータスLEDの点滅周期，通信タイムアウト */
-#define EEPROM_ERROR_LED_BRINK_PERIOD                           10      /*!< エラーLEDの点滅周期 */
-#define EEPROM_COM_TIMEOUT_LIMIT                                11      /*!< 通信タイムアウト検出時間 */
-#define EEPROM_INDEX_NUM                                        12      /*!< EEPROMインデックスの数 */
+#define EEPROM_STATUS_LED_BRINK_PERIOD_COM_TIMEOUT              6       /*!< ステータスLEDの点滅周期，通信タイムアウト */
+#define EEPROM_ERROR_LED_BRINK_PERIOD                           7       /*!< エラーLEDの点滅周期 */
+#define EEPROM_COM_TIMEOUT_LIMIT                                8       /*!< 通信タイムアウト検出時間 */
+#define EEPROM_INDEX_NUM                                        9       /*!< EEPROMインデックスの数 */
 /*! @} */
 
 
@@ -108,22 +102,22 @@ struct eeprom_t {
 
 
 /*! @cond */
-#ROM 0x2100={
-    EEPROM_INIT_PAN_SERVO_NEUTRAL_POSITION,
-    EEPROM_INIT_PAN_SERVO_MIN_POSITION,
-    EEPROM_INIT_PAN_SERVO_MAX_POSITION,
-    EEPROM_INIT_TILT_SERVO_NEUTRAL_POSITION,
-    EEPROM_INIT_TILT_SERVO_MIN_POSITION,
-    EEPROM_INIT_TILT_SERVO_MAX_POSITION,
-    EEPROM_INIT_POWER_LED_BRIGHTNESS_MIN_L,
-    EEPROM_INIT_POWER_LED_BRIGHTNESS_MIN_H,
-    EEPROM_INIT_POWER_LED_BRIGHTNESS_MAX_L,
-    EEPROM_INIT_POWER_LED_BRIGHTNESS_MAX_H,
-    EEPROM_INIT_POWER_LED_BRIGHTNESS_STEP,
+#rom 0x2100={
+    EEPROM_INIT_PAN_SERVO_NEUTRAL_POSITION_L,
+    EEPROM_INIT_PAN_SERVO_NEUTRAL_POSITION_H,
+    EEPROM_INIT_PAN_SERVO_MIN_POSITION_L,
+    EEPROM_INIT_PAN_SERVO_MIN_POSITION_H,
+    EEPROM_INIT_PAN_SERVO_MAX_POSITION_L,
+    EEPROM_INIT_PAN_SERVO_MAX_POSITION_H,
+    EEPROM_INIT_TILT_SERVO_NEUTRAL_POSITION_L,
+    EEPROM_INIT_TILT_SERVO_NEUTRAL_POSITION_H,
+    EEPROM_INIT_TILT_SERVO_MIN_POSITION_L,
+    EEPROM_INIT_TILT_SERVO_MIN_POSITION_H,
+    EEPROM_INIT_TILT_SERVO_MAX_POSITION_L,
+    EEPROM_INIT_TILT_SERVO_MAX_POSITION_H,
     EEPROM_INIT_STATUS_LED_BRINK_PERIOD_COM_TIMEOUT,
     EEPROM_INIT_ERROR_LED_BRINK_PERIOD,
-    EEPROM_INIT_COM_TIMEOUT_LIMIT_L,
-    EEPROM_INIT_COM_TIMEOUT_LIMIT_H
+    EEPROM_INIT_COM_TIMEOUT_LIMIT
 }
 /*! @endcond */
 
@@ -177,6 +171,7 @@ bool EEPROM_write(
 /**
  * @brief   EEPROM書込み完了割込み処理
  */
+#separate
 void isr_EEPROM(void);
 
 #endif  // __CAMERAMOUNT_EEPROM_H__
