@@ -116,7 +116,7 @@ bool EEPROM_write(
             
             write_eeprom((EEPROM_table[EEPROM_write_index].addr + EEPROM_write_count), EEPROM_write_buffer[EEPROM_write_count]);
             enable_interrupts(INT_EEPROM);
-            eeprom_writing = TRUE;
+            EEPROM_writing = TRUE;
             result = TRUE;
         }
         else {
@@ -142,7 +142,7 @@ void isr_EEPROM(void)
     }
     else {
         disable_interrupts(INT_EEPROM);
-        eeprom_writing = FALSE;
+        EEPROM_writing = FALSE;
     }
     
     return;
