@@ -19,18 +19,22 @@
 #define REGISTER_SYSTEM_STATE                                   0       /*!< 現在のシステムステート */
 #define REGISTER_SYSTEM_STATUS                                  1       /*!< システムステータス */
 #define REGISTER_SYSTEM_ERROR                                   2       /*!< システムエラー */
-#define REGISTER_PAN_SERVO_REQUEST_POSITION                     3       /*!< 水平方向用サーボ，指示位置 */
-#define REGISTER_PAN_SERVO_NEUTRAL_POSITION                     4       /*!< 水平方向用サーボ，ニュートラル位置 */
-#define REGISTER_PAN_SERVO_MIN_POSITION                         5       /*!< 水平方向用サーボ，最小位置 */
-#define REGISTER_PAN_SERVO_MAX_POSITION                         6       /*!< 水平方向用サーボ，最大位置 */
-#define REGISTER_TILT_SERVO_REQUEST_POSITION                    7       /*!< 垂直方向用サーボ，指示位置 */
-#define REGISTER_TILT_SERVO_NEUTRAL_POSITION                    8       /*!< 垂直方向用サーボ，ニュートラル位置 */
-#define REGISTER_TILT_SERVO_MIN_POSITION                        9       /*!< 垂直方向用サーボ，最小位置 */
-#define REGISTER_TILT_SERVO_MAX_POSITION                        10      /*!< 垂直方向用サーボ，最大位置 */
-#define REGISTER_STATUS_LED_BRINK_PERIOD_COM_TIMEOUT            11      /*!< ステータスLEDの点滅周期，通信タイムアウト */
-#define REGISTER_ERROR_LED_BRINK_PERIOD                         12      /*!< エラーLEDの点滅周期 */
-#define REGISTER_COM_TIMEOUT_LIMIT                              13      /*!< 通信タイムアウト検出時間 */
-#define REGISTER_INDEX_NUM                                      14      /*!< レジスタインデックスの数 */
+#define REGISTER_SERVO_INITIAL_CTRL_MODE                        3       /*!< サーボ制御モード */
+#define REGISTER_SERVO_POSITION_FACTOR                          4       /*!< サーボ角度位置変換係数 */
+#define REGISTER_PAN_SERVO_REQUEST_ANGLE                        5       /*!< 水平方向用サーボ，指示角度 */
+#define REGISTER_PAN_SERVO_REQUEST_POSITION                     6       /*!< 水平方向用サーボ，指示位置 */
+#define REGISTER_PAN_SERVO_NEUTRAL_POSITION                     7       /*!< 水平方向用サーボ，ニュートラル位置 */
+#define REGISTER_PAN_SERVO_MIN_POSITION                         8       /*!< 水平方向用サーボ，最小位置 */
+#define REGISTER_PAN_SERVO_MAX_POSITION                         9       /*!< 水平方向用サーボ，最大位置 */
+#define REGISTER_TILT_SERVO_REQUEST_ANGLE                       10      /*!< 垂直方向用サーボ，指示角度 */
+#define REGISTER_TILT_SERVO_REQUEST_POSITION                    11      /*!< 垂直方向用サーボ，指示位置 */
+#define REGISTER_TILT_SERVO_NEUTRAL_POSITION                    12      /*!< 垂直方向用サーボ，ニュートラル位置 */
+#define REGISTER_TILT_SERVO_MIN_POSITION                        13      /*!< 垂直方向用サーボ，最小位置 */
+#define REGISTER_TILT_SERVO_MAX_POSITION                        14      /*!< 垂直方向用サーボ，最大位置 */
+#define REGISTER_STATUS_LED_BRINK_PERIOD_COM_TIMEOUT            15      /*!< ステータスLEDの点滅周期，通信タイムアウト */
+#define REGISTER_ERROR_LED_BRINK_PERIOD                         16      /*!< エラーLEDの点滅周期 */
+#define REGISTER_COM_TIMEOUT_LIMIT                              17      /*!< 通信タイムアウト検出時間 */
+#define REGISTER_INDEX_NUM                                      18      /*!< レジスタインデックスの数 */
 /*! @} */
 
 

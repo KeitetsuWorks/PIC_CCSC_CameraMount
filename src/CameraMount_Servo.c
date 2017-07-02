@@ -19,6 +19,15 @@
 
 
 /**
+ * @brief   サーボの指示角度から指示位置を計算する
+ * @param[in]       neutral_position    ニュートラル位置
+ * @param[in]       angle               指示角度
+ * @return          指示位置
+ */
+static uint16_t Servo_calcPosition(uint16_t neutral_position, int16_t angle);
+
+
+/**
  * @brief   水平方向用サーボのサーボ制御信号（パルス信号）を開始する
  */
 static void PanServo_beginPulse(void);
@@ -70,6 +79,8 @@ static void TiltServo_onPin(void);
 static void TiltServo_offPin(void);
 
 
+uint8_t Servo_mode;                     /*!< サーボ制御モード */
+int8_t Servo_position_factor;           /*!< サーボ角度位置変換係数 */
 uint8_t Servo_channel;                  /*!< サーボ制御チャンネル */
 struct servo_t PanServo;                /*!< 水平方向用サーボ */
 struct servo_t TiltServo;               /*!< 垂直方向用サーボ */
@@ -77,12 +88,17 @@ struct servo_t TiltServo;               /*!< 垂直方向用サーボ */
 
 void Servo_init(void)
 {
+    EEPROM_read(EEPROM_SERVO_INITIAL_CTRL_MODE, &(Servo_mode));
     Servo_channel = 0;
+    EEPROM_read(EEPROM_SERVO_POSITION_FACTOR, &(Servo_position_factor));
     
+    EEPROM_read(EEPROM_PAN_SERVO_INITIAL_ANGLE, &(PanServo.request_angle));
     EEPROM_read(EEPROM_PAN_SERVO_NEUTRAL_POSITION, &(PanServo.neutral_position));
     EEPROM_read(EEPROM_PAN_SERVO_MIN_POSITION, &(PanServo.min_position));
     EEPROM_read(EEPROM_PAN_SERVO_MAX_POSITION, &(PanServo.max_position));
     PanServo.request_position = PanServo.neutral_position;
+    
+    EEPROM_read(EEPROM_TILT_SERVO_INITIAL_ANGLE, &(TiltServo.request_angle));
     EEPROM_read(EEPROM_TILT_SERVO_NEUTRAL_POSITION, &(TiltServo.neutral_position));
     EEPROM_read(EEPROM_TILT_SERVO_MIN_POSITION, &(TiltServo.min_position));
     EEPROM_read(EEPROM_TILT_SERVO_MAX_POSITION, &(TiltServo.max_position));
@@ -146,6 +162,22 @@ void isr_CCP1(void)
 }
 
 
+static uint16_t Servo_calcPosition(uint16_t neutral_position, int16_t angle)
+{
+    int32_t servo_displacement;
+    int32_t servo_position;
+    
+    servo_displacement = (int32_t)angle * (int32_t)Servo_position_factor;
+    servo_position = (int32_t)neutral_position + servo_displacement;
+    
+    if (servo_position < 0 || servo_position > 65535) {
+        servo_position = (int32_t)neutral_position;
+    }
+    
+    return (uint16_t)servo_position;
+}
+
+
 static void PanServo_beginPulse(void)
 {
     uint16_t pan_servo_position;
@@ -154,6 +186,15 @@ static void PanServo_beginPulse(void)
     set_timer1(TIMER1_INITIAL_VALUE);
     
     PanServo_onPin();
+    
+    switch (Servo_mode) {
+        case SERVO_CTRL_MODE_ANGLE:
+            PanServo.request_position = Servo_calcPosition(PanServo.neutral_position, PanServo.request_angle);
+            break;
+        case SERVO_CTRL_MODE_POSITION:
+        default:
+            break;
+    }
     
     switch (System_getState()) {
         case SYSTEM_RUN:            // 動作中
@@ -197,6 +238,15 @@ static void TiltServo_beginPulse(void)
     set_timer1(TIMER1_INITIAL_VALUE);
     
     TiltServo_onPin();
+    
+    switch (Servo_mode) {
+        case SERVO_CTRL_MODE_ANGLE:
+            TiltServo.request_position = Servo_calcPosition(TiltServo.neutral_position, TiltServo.request_angle);
+            break;
+        case SERVO_CTRL_MODE_POSITION:
+        default:
+            break;
+    }
     
     switch (System_getState()) {
         case SYSTEM_RUN:            // 動作中
