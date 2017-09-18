@@ -111,10 +111,10 @@
 
 
 /**
- * @struct  eeprom_t
+ * @struct  eeprom_st
  * @brief   EEPROM設定構造体
  */
-struct eeprom_t {
+struct eeprom_st {
     uint8_t addr;               /*!< EEPROMアドレス */
     uint8_t size;               /*!< EEPROMデータサイズ */
     bool write_enable;          /*!< EEPROMライトイネーブル */

@@ -20,7 +20,7 @@
  * @var     EEPROM_table
  * @brief   EEPROMテーブル
  */
-const struct eeprom_t EEPROM_table[] = {
+const struct eeprom_st EEPROM_table[] = {
     {   EEPROM_ADDR_SERVO_INITIAL_CTRL_MODE,                EEPROM_SIZE_SERVO_INITIAL_CTRL_MODE,                TRUE    },
     {   EEPROM_ADDR_SERVO_POSITION_FACTOR,                  EEPROM_SIZE_SERVO_POSITION_FACTOR,                  TRUE    },
     {   EEPROM_ADDR_PAN_SERVO_INITIAL_ANGLE_L,              EEPROM_SIZE_PAN_SERVO_INITIAL_ANGLE,                TRUE    },
@@ -75,7 +75,7 @@ uint8_t EEPROM_read(
     read_buffer = (uint8_t *)data;
     read_count = 0;
     
-    if (EEPROM_isWriting() == FALSE) {
+    if (EEPROM_writing == FALSE) {
         if (index < EEPROM_INDEX_NUM) {
             while (read_count < EEPROM_table[index].size) {
                 *read_buffer = read_eeprom(EEPROM_table[index].addr + read_count);
@@ -107,7 +107,7 @@ bool EEPROM_write(
     write_data = (uint8_t *)data;
     copy_count = 0;
     
-    if (EEPROM_isWriting() == FALSE) {
+    if (EEPROM_writing == FALSE) {
         if (    (index < EEPROM_INDEX_NUM)
             &&  (EEPROM_table[index].write_enable == TRUE)  ) {
             while (copy_count < EEPROM_table[index].size) {

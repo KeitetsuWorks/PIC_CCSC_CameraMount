@@ -35,7 +35,7 @@ bool PowerLED_ctrl_flag;                        /*!< 電源LEDの制御フラグ
  */
 /*! @{ */
 bool StatusLED_ctrl_flag;                       /*!< ステータスLEDの制御フラグ */
-struct timer_5ms_t StatusLED_timer;             /*!< ステータスLEDの制御タイマ */
+struct timer_5ms_st StatusLED_timer;            /*!< ステータスLEDの制御タイマ */
 uint8_t StatusLED_brink_period_COM_TIMEOUT;     /*!< ステータスLEDの点滅周期，通信タイムアウト */
 /*! @} */
 
@@ -45,7 +45,7 @@ uint8_t StatusLED_brink_period_COM_TIMEOUT;     /*!< ステータスLEDの点滅
  */
 /*! @{ */
 bool ErrorLED_ctrl_flag;                        /*!< エラーLEDの制御フラグ */
-struct timer_5ms_t ErrorLED_timer;              /*!< エラーLEDの制御タイマ */
+struct timer_5ms_st ErrorLED_timer;             /*!< エラーLEDの制御タイマ */
 uint8_t ErrorLED_brink_period;                  /*!< エラーLEDの点滅周期 */
 /*! @} */
 

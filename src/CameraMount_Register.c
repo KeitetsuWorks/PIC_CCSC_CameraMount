@@ -20,25 +20,25 @@
  * @var     Register_table
  * @brief   レジスタテーブル
  */
-const struct register_t Register_table[] = {
-    {   (uint8_t *)(&System_state),                         1,  FALSE   },
-    {   (uint8_t *)(&System_status),                        1,  TRUE    },
-    {   (uint8_t *)(&System_error),                         1,  TRUE    },
-    {   (uint8_t *)(&Servo_mode),                           1,  TRUE    },
-    {   (uint8_t *)(&Servo_position_factor),                1,  TRUE    },
-    {   (uint8_t *)(&(PanServo.request_angle)),             2,  TRUE    },
-    {   (uint8_t *)(&(PanServo.request_position)),          2,  TRUE    },
-    {   (uint8_t *)(&(PanServo.neutral_position)),          2,  TRUE    },
-    {   (uint8_t *)(&(PanServo.min_position)),              2,  TRUE    },
-    {   (uint8_t *)(&(PanServo.max_position)),              2,  TRUE    },
-    {   (uint8_t *)(&(TiltServo.request_angle)),            2,  TRUE    },
-    {   (uint8_t *)(&(TiltServo.request_position)),         2,  TRUE    },
-    {   (uint8_t *)(&(TiltServo.neutral_position)),         2,  TRUE    },
-    {   (uint8_t *)(&(TiltServo.min_position)),             2,  TRUE    },
-    {   (uint8_t *)(&(TiltServo.max_position)),             2,  TRUE    },
-    {   (uint8_t *)(&StatusLED_brink_period_COM_TIMEOUT),   1,  TRUE    },
-    {   (uint8_t *)(&ErrorLED_brink_period),                1,  TRUE    },
-    {   (uint8_t *)(&com_timeout_limit),                    1,  TRUE    }
+const struct register_st Register_table[] = {
+    {   (uint8_t *)(&System_state),                         REGISTER_SIZE_SYSTEM_STATE,                         FALSE   },
+    {   (uint8_t *)(&System_status),                        REGISTER_SIZE_SYSTEM_STATUS,                        TRUE    },
+    {   (uint8_t *)(&System_error),                         REGISTER_SIZE_SYSTEM_ERROR,                         TRUE    },
+    {   (uint8_t *)(&Servo_mode),                           REGISTER_SIZE_SERVO_CTRL_MODE,                      TRUE    },
+    {   (uint8_t *)(&Servo_position_factor),                REGISTER_SIZE_SERVO_POSITION_FACTOR,                TRUE    },
+    {   (uint8_t *)(&(PanServo.request_angle)),             REGISTER_SIZE_PAN_SERVO_REQUEST_ANGLE,              TRUE    },
+    {   (uint8_t *)(&(PanServo.request_position)),          REGISTER_SIZE_PAN_SERVO_REQUEST_POSITION,           TRUE    },
+    {   (uint8_t *)(&(PanServo.neutral_position)),          REGISTER_SIZE_PAN_SERVO_NEUTRAL_POSITION,           TRUE    },
+    {   (uint8_t *)(&(PanServo.min_position)),              REGISTER_SIZE_PAN_SERVO_MIN_POSITION,               TRUE    },
+    {   (uint8_t *)(&(PanServo.max_position)),              REGISTER_SIZE_PAN_SERVO_MAX_POSITION,               TRUE    },
+    {   (uint8_t *)(&(TiltServo.request_angle)),            REGISTER_SIZE_TILT_SERVO_REQUEST_ANGLE,             TRUE    },
+    {   (uint8_t *)(&(TiltServo.request_position)),         REGISTER_SIZE_TILT_SERVO_REQUEST_POSITION,          TRUE    },
+    {   (uint8_t *)(&(TiltServo.neutral_position)),         REGISTER_SIZE_TILT_SERVO_NEUTRAL_POSITION,          TRUE    },
+    {   (uint8_t *)(&(TiltServo.min_position)),             REGISTER_SIZE_TILT_SERVO_MIN_POSITION,              TRUE    },
+    {   (uint8_t *)(&(TiltServo.max_position)),             REGISTER_SIZE_TILT_SERVO_MAX_POSITION,              TRUE    },
+    {   (uint8_t *)(&StatusLED_brink_period_COM_TIMEOUT),   REGISTER_SIZE_STATUS_LED_BRINK_PERIOD_COM_TIMEOUT,  TRUE    },
+    {   (uint8_t *)(&ErrorLED_brink_period),                REGISTER_SIZE_ERROR_LED_BRINK_PERIOD,               TRUE    },
+    {   (uint8_t *)(&com_timeout_limit),                    REGISTER_SIZE_COM_TIMEOUT_LIMIT,                    TRUE    }
 };
 
 

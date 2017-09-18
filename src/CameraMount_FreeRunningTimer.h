@@ -21,20 +21,20 @@
 
 
 /**
- * @struct  timer_5ms_t
+ * @struct  timer_5ms_st
  * @brief   タイマ状態管理構造体（5ミリ秒）
  */
-struct timer_5ms_t {
+struct timer_5ms_st {
     bool status;            /*!< タイマ状態 */
     uint8_t start;          /*!< タイマ開始時間 */
 };
 
 
 /**
- * @struct  timer_1s_t
+ * @struct  timer_1s_st
  * @brief   タイマ状態管理構造体（1秒）
  */
-struct timer_1s_t {
+struct timer_1s_st {
     bool status;            /*!< タイマ状態 */
     uint8_t start;          /*!< タイマ開始時間 */
 };
@@ -74,7 +74,7 @@ void FreeRunningTimer_5ms_count(void);
  * @retval          TRUE            タイムアウト発生
  */
 #inline
-bool FreeRunningTimer_5ms_isTimeout(struct timer_5ms_t *timer, bool enable, uint8_t period);
+bool FreeRunningTimer_5ms_isTimeout(struct timer_5ms_st *timer, bool enable, uint8_t period);
 
 
 /**
@@ -99,6 +99,6 @@ void FreeRunningTimer_1s_count(void);
  * @retval          TRUE            タイムアウト発生
  */
 #inline
-bool FreeRunningTimer_1s_isTimeout(struct timer_1s_t *timer, bool enable, uint8_t period);
+bool FreeRunningTimer_1s_isTimeout(struct timer_1s_st *timer, bool enable, uint8_t period);
 
 #endif  // __CAMERAMOUNT_FREERUNNINGTIMER_H__

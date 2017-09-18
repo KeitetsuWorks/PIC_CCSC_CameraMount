@@ -53,4 +53,4 @@ move /Y %SRC_DIR%\*.tre %BUILD_DIR%
 :END_MAKE
 endlocal
 
-exit
+exit /B

@@ -70,7 +70,7 @@ static uint8_t response_length;                 /*!< レスポンス長 */
  * @name    通信タイムアウト検出用タイマ 
  */
 /*! @{ */
-static struct timer_1s_t com_timeout_timer;     /*!< 通信タイムアウト検出用タイマ */
+static struct timer_1s_st com_timeout_timer;    /*!< 通信タイムアウト検出用タイマ */
 static uint8_t com_timeout_limit;               /*!< 通信タイムアウト検出時間，1秒単位 */
 /*! @} */
 

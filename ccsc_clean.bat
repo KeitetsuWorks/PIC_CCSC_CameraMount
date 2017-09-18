@@ -32,4 +32,4 @@ echo íœ‚ªŠ®—¹‚µ‚Ü‚µ‚½
 
 endlocal
 
-exit
+exit /B

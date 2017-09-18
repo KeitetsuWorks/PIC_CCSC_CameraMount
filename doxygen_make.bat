@@ -30,4 +30,4 @@ del /Q %DOXYGEN_RTF_DIR%\dir*.rtf
 :END_MAKE
 endlocal
 
-exit
+exit /B

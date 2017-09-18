@@ -41,10 +41,10 @@
 
 
 /**
- * @struct  servo_t
+ * @struct  servo_st
  * @brief   サーボ制御管理構造体
  */
-struct servo_t {
+struct servo_st {
     int16_t request_angle;      /*!< 指示角度 */
     uint16_t request_position;  /*!< 指示位置 */
     uint16_t neutral_position;  /*!< ニュートラル位置 */

@@ -29,7 +29,7 @@ static uint8_t FreeRunningTimer_1s;             /*!< フリーランニングタ
  * @name    1秒タイマ
  */
 /*! @{ */
-static struct timer_5ms_t timer_1s;             /*!< 1秒タイマ */
+static struct timer_5ms_st timer_1s;            /*!< 1秒タイマ */
 /*! @} */
 
 
@@ -69,7 +69,7 @@ void FreeRunningTimer_5ms_count(void)
 
 
 #inline
-bool FreeRunningTimer_5ms_isTimeout(struct timer_5ms_t *timer, bool enable, uint8_t period)
+bool FreeRunningTimer_5ms_isTimeout(struct timer_5ms_st *timer, bool enable, uint8_t period)
 {
     bool timeout;
     uint8_t interval;
@@ -126,7 +126,7 @@ void FreeRunningTimer_1s_count(void)
 
 
 #inline
-bool FreeRunningTimer_1s_isTimeout(struct timer_1s_t *timer, bool enable, uint8_t period)
+bool FreeRunningTimer_1s_isTimeout(struct timer_1s_st *timer, bool enable, uint8_t period)
 {
     bool timeout;
     uint8_t interval;
