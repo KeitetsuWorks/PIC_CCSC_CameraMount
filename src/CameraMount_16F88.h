@@ -16,6 +16,7 @@
 #fuses HS, WDT, PUT, NOMCLR, BROWNOUT, NOLVP, NOCPD, NOWRT, NODEBUG, CCPB3, NOPROTECT, NOFCMEN, NOIESO
 
 #device ADC=10
+#device WRITE_EEPROM=ASYNC
 
 #use delay(clock=20000000)
 #use rs232(baud = 9600, parity = N, xmit = PIN_B5, rcv = PIN_B2, bits = 8)

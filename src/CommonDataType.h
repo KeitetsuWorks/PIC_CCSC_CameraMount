@@ -41,10 +41,10 @@ typedef unsigned int32          uint32_t;   /*!< 符号なし，32bit */
 
 
 /**
- * @union   uint8_u
+ * @union   data8_u
  * @brief   8bit共用体
  */
-union uint8_u {
+union data8_u {
     uint8_t _8bit;          /*!< 8bitアクセス */
     struct {
         bool _bit0;
@@ -60,10 +60,10 @@ union uint8_u {
 
 
 /**
- * @union   uint16_u
+ * @union   data16_u
  * @brief   16bit共用体
  */
-union uint16_u {
+union data16_u {
     uint16_t _16bit;        /*!< 16bitアクセス */
     uint8_t _8bit[2];       /*!< 8bitアクセス */
     struct {
@@ -88,10 +88,10 @@ union uint16_u {
 
 
 /**
- * @union   uint32_u
+ * @union   data32_u
  * @brief   32bit共用体
  */
-union uint32_u {
+union data32_u {
     uint32_t _32bit;        /*!< 32bitアクセス */
     uint16_t _16bit[2];     /*!< 16bitアクセス */
     uint8_t _8bit[4];       /*!< 8bitアクセス */

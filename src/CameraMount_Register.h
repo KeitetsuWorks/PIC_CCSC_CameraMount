@@ -16,7 +16,7 @@
  * @name    レジスタデータサイズ
  */
 /*! @{ */
-#define REGISTER_SIZE_SYSTEM_STATE                              1       /*!< 現在のシステムステート */
+#define REGISTER_SIZE_SYSTEM_STATE                              1       /*!< システムステート */
 #define REGISTER_SIZE_SYSTEM_STATUS                             1       /*!< システムステータス */
 #define REGISTER_SIZE_SYSTEM_ERROR                              1       /*!< システムエラー */
 #define REGISTER_SIZE_SERVO_CTRL_MODE                           1       /*!< サーボ制御モード */
@@ -41,7 +41,7 @@
  * @name    レジスタインデックス
  */
 /*! @{ */
-#define REGISTER_SYSTEM_STATE                                   0       /*!< 現在のシステムステート */
+#define REGISTER_SYSTEM_STATE                                   0       /*!< システムステート */
 #define REGISTER_SYSTEM_STATUS                                  1       /*!< システムステータス */
 #define REGISTER_SYSTEM_ERROR                                   2       /*!< システムエラー */
 #define REGISTER_SERVO_CTRL_MODE                                3       /*!< サーボ制御モード */

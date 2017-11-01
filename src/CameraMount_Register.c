@@ -94,8 +94,7 @@ uint8_t Register_write(
     write_data = (uint8_t *)data;
     write_count = 0;
     
-    if (    (index < REGISTER_INDEX_NUM)
-        &&  (Register_table[index].write_enable == TRUE)  ) {
+    if ((index < REGISTER_INDEX_NUM) && (Register_table[index].write_enable == TRUE)) {
         write_addr = Register_table[index].addr;
         while (write_count < Register_table[index].size) {
             *write_addr = *write_data;

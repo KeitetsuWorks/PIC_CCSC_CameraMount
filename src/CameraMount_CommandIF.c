@@ -44,6 +44,8 @@
  */
 /*! @{ */
 #define RESPONSE_LENGTH_MAX             6       /*!< 最大レスポンス長 */
+#define RESPONSE_COMMAND_SUCCESS        0       /*!< レスポンス: コマンド実行成功 */
+#define RESPONSE_COMMAND_FAILURE        1       /*!< レスポンス: コマンド実行失敗 */
 /*! @} */
 
 
@@ -122,6 +124,15 @@ static void CommandIF_initResponseCtrl(void);
 
 
 /**
+ * @brief   レスポンスのヘッダを作成する
+ * @param[in]       result          コマンド実行結果
+ * @return          ヘッダ
+ */
+#inline
+static uint8_t CommandIF_createResponseHeader(uint8_t result);
+
+
+/**
  * @brief   レスポンスを送信する
  */
 static void CommandIF_sendResponse(void);
@@ -189,10 +200,11 @@ static void CommandIF_execCommand(void)
             System_setInitializationRequest();
             break;
         case COMMAND_GET_VERSION:
-            response[1] = CAMERAMOUNT_VERSION;
-            response[2] = CAMERAMOUNT_REVISION;
-            response[0] = System_getError();
-            response_length = 3;
+            response_length = 4;
+            response[1] = DEVICE_TYPE;
+            response[2] = CAMERAMOUNT_VERSION;
+            response[3] = CAMERAMOUNT_REVISION;
+            response[0] = CommandIF_createResponseHeader(RESPONSE_COMMAND_SUCCESS);
             CommandIF_sendResponse();
             break;
         case COMMAND_READ_REGISTER:
@@ -200,13 +212,13 @@ static void CommandIF_execCommand(void)
             if ((response[1] + 2) > RESPONSE_LENGTH_MAX) {
                 System_setError(SYSTEM_ERROR_INVALID_COMMAND);
                 
-                response[0] = System_getError();
                 response_length = 2;
+                response[0] = CommandIF_createResponseHeader(RESPONSE_COMMAND_FAILURE);
                 CommandIF_sendResponse();
             }
             else {
-                response[0] = System_getError();
                 response_length = response[1] + 2;
+                response[0] = CommandIF_createResponseHeader(RESPONSE_COMMAND_SUCCESS);
                 CommandIF_sendResponse();
             }
             break;
@@ -214,14 +226,14 @@ static void CommandIF_execCommand(void)
             if (Register_getSize(command[1]) != (CommandIF_getCommandLength() - 2)) {
                 System_setError(SYSTEM_ERROR_INVALID_COMMAND);
                 
-                response[0] = System_getError();
                 response_length = 1;
+                response[0] = CommandIF_createResponseHeader(RESPONSE_COMMAND_FAILURE);
                 CommandIF_sendResponse();
             }
             else {
-                response[1] = Register_write(command[1], &(command[2]));
-                response[0] = System_getError();
                 response_length = 2;
+                response[1] = Register_write(command[1], &(command[2]));
+                response[0] = CommandIF_createResponseHeader(RESPONSE_COMMAND_SUCCESS);
                 CommandIF_sendResponse();
             }
             break;
@@ -230,13 +242,13 @@ static void CommandIF_execCommand(void)
             if ((response[1] + 2) > RESPONSE_LENGTH_MAX) {
                 System_setError(SYSTEM_ERROR_INVALID_COMMAND);
                 
-                response[0] = System_getError();
                 response_length = 2;
+                response[0] = CommandIF_createResponseHeader(RESPONSE_COMMAND_FAILURE);
                 CommandIF_sendResponse();
             }
             else {
-                response[0] = System_getError();
                 response_length = response[1] + 2;
+                response[0] = CommandIF_createResponseHeader(RESPONSE_COMMAND_SUCCESS);
                 CommandIF_sendResponse();
             }
             break;
@@ -244,22 +256,22 @@ static void CommandIF_execCommand(void)
             if (EEPROM_getSize(command[1]) != (CommandIF_getCommandLength() - 2)) {
                 System_setError(SYSTEM_ERROR_INVALID_COMMAND);
                 
-                response[0] = System_getError();
                 response_length = 1;
+                response[0] = CommandIF_createResponseHeader(RESPONSE_COMMAND_FAILURE);
                 CommandIF_sendResponse();
             }
             else {
-                response[1] = EEPROM_write(command[1], &(command[2]));
-                response[0] = System_getError();
                 response_length = 2;
+                response[1] = EEPROM_write(command[1], &(command[2]));
+                response[0] = CommandIF_createResponseHeader(RESPONSE_COMMAND_SUCCESS);
                 CommandIF_sendResponse();
             }
             break;
         default:
             System_setError(SYSTEM_ERROR_INVALID_COMMAND);
             
-            response[0] = System_getError();
             response_length = 1;
+            response[0] = CommandIF_createResponseHeader(RESPONSE_COMMAND_FAILURE);
             CommandIF_sendResponse();
             break;
     }
@@ -274,6 +286,13 @@ static void CommandIF_initResponseCtrl(void)
     response_length = 0;
     
     return;
+}
+
+
+#inline
+static uint8_t CommandIF_createResponseHeader(uint8_t result)
+{
+    return ((result << 4) | response_length);
 }
 
 

@@ -108,8 +108,7 @@ bool EEPROM_write(
     copy_count = 0;
     
     if (EEPROM_writing == FALSE) {
-        if (    (index < EEPROM_INDEX_NUM)
-            &&  (EEPROM_table[index].write_enable == TRUE)  ) {
+        if ((index < EEPROM_INDEX_NUM) &&  (EEPROM_table[index].write_enable == TRUE)) {
             while (copy_count < EEPROM_table[index].size) {
                 EEPROM_write_buffer[copy_count] = *write_data;
                 *write_data++;
@@ -118,9 +117,14 @@ bool EEPROM_write(
             EEPROM_write_index = index;
             EEPROM_write_count = 0;
             
-            write_eeprom((EEPROM_table[EEPROM_write_index].addr + EEPROM_write_count), EEPROM_write_buffer[EEPROM_write_count]);
-            enable_interrupts(INT_EEPROM);
+            disable_interrupts(GLOBAL);
+            
             EEPROM_writing = TRUE;
+            enable_interrupts(INT_EEPROM);
+            write_eeprom((EEPROM_table[EEPROM_write_index].addr + EEPROM_write_count), EEPROM_write_buffer[EEPROM_write_count]);
+            
+            enable_interrupts(GLOBAL);
+            
             result = TRUE;
         }
         else {
@@ -145,8 +149,8 @@ void isr_EEPROM(void)
         write_eeprom((EEPROM_table[EEPROM_write_index].addr + EEPROM_write_count), EEPROM_write_buffer[EEPROM_write_count]);
     }
     else {
-        disable_interrupts(INT_EEPROM);
         EEPROM_writing = FALSE;
+        disable_interrupts(INT_EEPROM);
     }
     
     return;

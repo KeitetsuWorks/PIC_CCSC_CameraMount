@@ -41,8 +41,8 @@
 
 
 /**
- * @brief   現在のシステムステートを取得する
- * @return          現在のシステムステート
+ * @brief   システムステートを取得する
+ * @return          システムステート
  */
 #inline
 uint8_t System_getState(void);
