@@ -58,11 +58,11 @@ void initDevice(void)
 #else
     // 出力ピンの初期化
     output_a(0x00);
-    output_b(0x04);
+    output_b(0x00);
 
     // 入出力設定
     set_tris_a(0x00);
-    set_tris_b(0x00);
+    set_tris_b(0x04);
 
     // 割込み無効化
     disable_interrupts(GLOBAL);
@@ -70,7 +70,6 @@ void initDevice(void)
     // ペリフェラル設定
     setup_adc_ports(NO_ANALOGS);
     setup_adc(ADC_OFF);
-    setup_spi(FALSE);
     setup_timer_0(RTCC_INTERNAL | RTCC_DIV_128);
     setup_timer_1(T1_INTERNAL | T1_DIV_BY_8);
     setup_timer_2(T2_DISABLED, 255, 1);

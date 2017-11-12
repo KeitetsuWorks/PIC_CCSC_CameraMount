@@ -113,7 +113,7 @@ void uart_tx_addTransmitData(uint8_t uart_tx_data)
 }
 
 
-#org 0x0800, 0x08FF DEFAULT
+#org 0x0800, 0x084F DEFAULT
 #int_TBE
 void uart_tx_isr_TBE(void)
 {
@@ -205,7 +205,7 @@ uint8_t uart_rx_getReceivedData(void)
 }
 
 
-#org 0x0900, 0x09FF DEFAULT
+#org 0x0850, 0x087F DEFAULT
 #int_RDA
 void uart_rx_isr_RDA(void)
 {

@@ -31,7 +31,7 @@ if not exist %SRC% (
 	pause
 	goto END_MAKE
 )
-"C:\Program Files (x86)\PICC\Ccsc.exe" +FM +EW +T +A +G_DEVELOPMENTBOARD=1 %SRC%
+"C:\Program Files (x86)\PICC\Ccsc.exe" +FM +EW +T +A +G_DEVELOPMENTBOARD=0 %SRC%
 cd /D %~dp0
 
 rem コンパイル結果格納用フォルダを作成

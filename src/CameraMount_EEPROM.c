@@ -139,7 +139,7 @@ bool EEPROM_write(
 }
 
 
-#org 0x0A00, 0xAFF DEFAULT
+#org 0x0880, 0x08FF DEFAULT
 #int_EEPROM
 void isr_EEPROM(void)
 {
