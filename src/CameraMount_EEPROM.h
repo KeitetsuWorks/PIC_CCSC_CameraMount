@@ -149,13 +149,13 @@ struct eeprom_st {
 
 
 /**
- * @brief   EEPROM制御の初期化
+ * @brief   EEPROM制御を初期化する
  */
 void EEPROM_init(void);
 
 
 /**
- * @brief   EEPROMデータサイズ取得処理
+ * @brief   EEPROMデータサイズを取得する
  * @param[in]       index               EEPROMインデックス
  * @return          EEPROMデータサイズ
  */

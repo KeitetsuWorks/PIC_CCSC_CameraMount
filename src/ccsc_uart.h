@@ -58,7 +58,7 @@ bool uart_tx_isFull(void);
 
 
 /**
- * @brief   送信リングバッファに送信データを追加
+ * @brief   送信リングバッファに送信データを追加する
  * @param[in]       uart_tx_data        送信データ
  */
 #inline
@@ -91,7 +91,7 @@ void uart_rx_disable(void);
 
 
 /**
- * @brief   受信データ有無の確認
+ * @brief   受信データの有無を確認する
  * @retval          TRUE                受信データあり
  * @retval          FALSE               受信データなし
  */
@@ -107,7 +107,7 @@ bool uart_rx_isFull(void);
 
 
 /**
- * @brief   受信データ取得
+ * @brief   受信データを取得する
  * @return          受信データ
  */
 uint8_t uart_rx_getReceivedData(void);
