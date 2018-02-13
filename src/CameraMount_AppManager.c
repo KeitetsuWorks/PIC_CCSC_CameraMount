@@ -87,7 +87,7 @@ void AppManager_exec(void)
                 CommandIF_execTask();
                 break;
             case SYSTEM_HALT:
-                // デバイス制御の実行
+                // デバイス制御（システムステート依存）の実行
                 LED_ctrl();
                 
                 // アプリケーションの実行
