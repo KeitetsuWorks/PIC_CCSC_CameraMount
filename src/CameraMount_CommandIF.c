@@ -25,56 +25,56 @@
 /**
  * @name    コマンド
  */
-/*! @{ */
-#define COMMAND_LENGTH_MAX              6       /*!< 最大コマンド長 */
-#define COMMAND_MASK_OPCODE             0xF0    /*!< コマンドマスク: オペコード */
-#define COMMAND_MASK_LENGTH             0x0F    /*!< コマンドマスク: コマンド長 */
-#define COMMAND_RESET                   0x0     /*!< オペコード: ソフトウェアリセット */
-#define COMMAND_INITIALIZE              0x1     /*!< オペコード: システム初期化 */
-#define COMMAND_GET_VERSION             0x2     /*!< オペコード: バージョン情報取得 */
-#define COMMAND_READ_REGISTER           0x4     /*!< オペコード: レジスタ読込み */
-#define COMMAND_WRITE_REGISTER          0x5     /*!< オペコード: レジスタ書込み */
-#define COMMAND_READ_EEPROM             0x6     /*!< オペコード: EEPROM読込み */
-#define COMMAND_WRITE_EEPROM            0x7     /*!< オペコード: EEPROM書込み */
-/*! @} */
+/** @{ */
+#define COMMAND_LENGTH_MAX              6       /**< 最大コマンド長 */
+#define COMMAND_MASK_OPCODE             0xF0    /**< コマンドマスク: オペコード */
+#define COMMAND_MASK_LENGTH             0x0F    /**< コマンドマスク: コマンド長 */
+#define COMMAND_RESET                   0x0     /**< オペコード: ソフトウェアリセット */
+#define COMMAND_INITIALIZE              0x1     /**< オペコード: システム初期化 */
+#define COMMAND_GET_VERSION             0x2     /**< オペコード: バージョン情報取得 */
+#define COMMAND_READ_REGISTER           0x4     /**< オペコード: レジスタ読込み */
+#define COMMAND_WRITE_REGISTER          0x5     /**< オペコード: レジスタ書込み */
+#define COMMAND_READ_EEPROM             0x6     /**< オペコード: EEPROM読込み */
+#define COMMAND_WRITE_EEPROM            0x7     /**< オペコード: EEPROM書込み */
+/** @} */
 
 
 /**
  * @name    レスポンス
  */
-/*! @{ */
-#define RESPONSE_LENGTH_MAX             6       /*!< 最大レスポンス長 */
-#define RESPONSE_COMMAND_SUCCESS        0       /*!< レスポンス: コマンド実行成功 */
-#define RESPONSE_COMMAND_FAILURE        1       /*!< レスポンス: コマンド実行失敗 */
-/*! @} */
+/** @{ */
+#define RESPONSE_LENGTH_MAX             6       /**< 最大レスポンス長 */
+#define RESPONSE_COMMAND_SUCCESS        0       /**< レスポンス: コマンド実行成功 */
+#define RESPONSE_COMMAND_FAILURE        1       /**< レスポンス: コマンド実行失敗 */
+/** @} */
 
 
 /**
  * @name    コマンド
  */
-/*! @{ */
-static uint8_t command[COMMAND_LENGTH_MAX];     /*!< コマンド */
-static uint8_t command_length;                  /*!< コマンド長 */
-static uint8_t command_recieved_bytes;          /*!< コマンド受信長 */
-/*! @} */
+/** @{ */
+static uint8_t command[COMMAND_LENGTH_MAX];     /**< コマンド */
+static uint8_t command_length;                  /**< コマンド長 */
+static uint8_t command_recieved_bytes;          /**< コマンド受信長 */
+/** @} */
 
 
 /**
  * @name    レスポンス
  */
-/*! @{ */
-static uint8_t response[RESPONSE_LENGTH_MAX];   /*!< レスポンス */
-static uint8_t response_length;                 /*!< レスポンス長 */
-/*! @} */
+/** @{ */
+static uint8_t response[RESPONSE_LENGTH_MAX];   /**< レスポンス */
+static uint8_t response_length;                 /**< レスポンス長 */
+/** @} */
 
 
 /**
  * @name    通信タイムアウト検出用タイマ 
  */
-/*! @{ */
-static struct timer_1s_st com_timeout_timer;    /*!< 通信タイムアウト検出用タイマ */
-static uint8_t com_timeout_limit;               /*!< 通信タイムアウト検出時間，1秒単位 */
-/*! @} */
+/** @{ */
+static struct timer_1s_st com_timeout_timer;    /**< 通信タイムアウト検出用タイマ */
+static uint8_t com_timeout_limit;               /**< 通信タイムアウト検出時間，1秒単位 */
+/** @} */
 
 
 /**

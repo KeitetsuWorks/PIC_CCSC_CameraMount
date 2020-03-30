@@ -19,35 +19,35 @@
 #include "CameraMount_EEPROM.h"
 
 
-uint8_t LED_system_state_prev;                  /*!< 前のシステムステート */
+uint8_t LED_system_state_prev;                  /**< 前のシステムステート */
 
 
 /**
  * @name    電源LEDの制御変数
  */
-/*! @{ */
-bool PowerLED_ctrl_flag;                        /*!< 電源LEDの制御フラグ */
-/*! @} */
+/** @{ */
+bool PowerLED_ctrl_flag;                        /**< 電源LEDの制御フラグ */
+/** @} */
 
 
 /**
  * @name    ステータスLEDの制御変数
  */
-/*! @{ */
-bool StatusLED_ctrl_flag;                       /*!< ステータスLEDの制御フラグ */
-struct timer_5ms_st StatusLED_timer;            /*!< ステータスLEDの制御タイマ */
-uint8_t StatusLED_brink_period_COM_TIMEOUT;     /*!< ステータスLEDの点滅周期，通信タイムアウト */
-/*! @} */
+/** @{ */
+bool StatusLED_ctrl_flag;                       /**< ステータスLEDの制御フラグ */
+struct timer_5ms_st StatusLED_timer;            /**< ステータスLEDの制御タイマ */
+uint8_t StatusLED_brink_period_COM_TIMEOUT;     /**< ステータスLEDの点滅周期，通信タイムアウト */
+/** @} */
 
 
 /**
  * @name    エラーLEDの制御変数
  */
-/*! @{ */
-bool ErrorLED_ctrl_flag;                        /*!< エラーLEDの制御フラグ */
-struct timer_5ms_st ErrorLED_timer;             /*!< エラーLEDの制御タイマ */
-uint8_t ErrorLED_brink_period;                  /*!< エラーLEDの点滅周期 */
-/*! @} */
+/** @{ */
+bool ErrorLED_ctrl_flag;                        /**< エラーLEDの制御フラグ */
+struct timer_5ms_st ErrorLED_timer;             /**< エラーLEDの制御タイマ */
+uint8_t ErrorLED_brink_period;                  /**< エラーLEDの点滅周期 */
+/** @} */
 
 
 /**

@@ -15,29 +15,29 @@
 /**
  * @name    タイマ1の設定
  */
-/*! @{ */
-#define TIMER1_INITIAL_VALUE        59286   /*!< 10ミリ秒 */
-/*! @} */
+/** @{ */
+#define TIMER1_INITIAL_VALUE        59286   /**< 10ミリ秒 */
+/** @} */
 
 
 /**
  * @name    サーボ制御モード
  */
-/*! @{ */
-#define SERVO_CTRL_MODE_POSITION    0       /*!< 位置指示モード */
-#define SERVO_CTRL_MODE_ANGLE       1       /*!< 角度指示モード */
-#define SERVO_CTRL_MODE_NUM         2       /*!< サーボ制御モード数 */
-/*! @} */
+/** @{ */
+#define SERVO_CTRL_MODE_POSITION    0       /**< 位置指示モード */
+#define SERVO_CTRL_MODE_ANGLE       1       /**< 角度指示モード */
+#define SERVO_CTRL_MODE_NUM         2       /**< サーボ制御モード数 */
+/** @} */
 
 
 /**
  * @name    サーボ制御チャンネル
  */
-/*! @{ */
-#define SERVO_CHANNEL_PAN           0       /*!< 水平方向用サーボ */
-#define SERVO_CHANNEL_TILT          1       /*!< 垂直方向用サーボ */
-#define SERVO_CHANNEL_NUM           2       /*!< サーボ制御チャンネル数 */
-/*! @} */
+/** @{ */
+#define SERVO_CHANNEL_PAN           0       /**< 水平方向用サーボ */
+#define SERVO_CHANNEL_TILT          1       /**< 垂直方向用サーボ */
+#define SERVO_CHANNEL_NUM           2       /**< サーボ制御チャンネル数 */
+/** @} */
 
 
 /**
@@ -45,11 +45,11 @@
  * @brief   サーボ制御管理構造体
  */
 struct servo_st {
-    int16_t request_angle;      /*!< 指示角度 */
-    uint16_t request_position;  /*!< 指示位置 */
-    uint16_t neutral_position;  /*!< ニュートラル位置 */
-    uint16_t min_position;      /*!< 最小位置 */
-    uint16_t max_position;      /*!< 最大位置 */
+    int16_t request_angle;      /**< 指示角度 */
+    uint16_t request_position;  /**< 指示位置 */
+    uint16_t neutral_position;  /**< ニュートラル位置 */
+    uint16_t min_position;      /**< 最小位置 */
+    uint16_t max_position;      /**< 最大位置 */
 };
 
 

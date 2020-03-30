@@ -79,11 +79,11 @@ static void TiltServo_onPin(void);
 static void TiltServo_offPin(void);
 
 
-uint8_t Servo_mode;                     /*!< サーボ制御モード */
-int8_t Servo_position_factor;           /*!< サーボ角度位置変換係数 */
-uint8_t Servo_channel;                  /*!< サーボ制御チャンネル */
-struct servo_st PanServo;               /*!< 水平方向用サーボ */
-struct servo_st TiltServo;              /*!< 垂直方向用サーボ */
+uint8_t Servo_mode;                     /**< サーボ制御モード */
+int8_t Servo_position_factor;           /**< サーボ角度位置変換係数 */
+uint8_t Servo_channel;                  /**< サーボ制御チャンネル */
+struct servo_st PanServo;               /**< 水平方向用サーボ */
+struct servo_st TiltServo;              /**< 垂直方向用サーボ */
 
 
 void Servo_init(void)

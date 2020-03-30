@@ -25,9 +25,9 @@
 /**
  * @name    アプリケーションマネージャ
  */
-/*! @{ */
-bool app_exec_request;                  /*!< アプリケーション実行要求 */
-/*! @} */
+/** @{ */
+bool app_exec_request;                  /**< アプリケーション実行要求 */
+/** @} */
 
 
 void AppManager_init(void)

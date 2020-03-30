@@ -15,10 +15,10 @@
 /**
  * @name    リングバッファのサイズ
  */
-/*! @{ */
-#define UART_TX_BUFFER_SIZE     0x07        /*!< 送信リングバッファのサイズ */
-#define UART_RX_BUFFER_SIZE     0x07        /*!< 受信リングバッファのサイズ */
-/*! @} */
+/** @{ */
+#define UART_TX_BUFFER_SIZE     0x07        /**< 送信リングバッファのサイズ */
+#define UART_RX_BUFFER_SIZE     0x07        /**< 受信リングバッファのサイズ */
+/** @} */
 
 
 /**

@@ -22,12 +22,12 @@
 /**
  * @name    システム管理
  */
-/*! @{ */
-uint8_t System_state;                   /*!< 現在のシステムステート */
-uint8_t System_status;                  /*!< システムステータス */
-uint8_t System_error;                   /*!< システムエラー */
-bool System_initialization_request;     /*!< システム初期化要求 */
-/*! @} */
+/** @{ */
+uint8_t System_state;                   /**< 現在のシステムステート */
+uint8_t System_status;                  /**< システムステータス */
+uint8_t System_error;                   /**< システムエラー */
+bool System_initialization_request;     /**< システム初期化要求 */
+/** @} */
 
 
 /**

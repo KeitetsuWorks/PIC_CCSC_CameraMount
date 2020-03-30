@@ -15,17 +15,17 @@
 /**
  * @name    タイマ0の設定
  */
-/*! @{ */
-#define TIMER0_INITIAL_VALUE    61      /*!< 5ミリ秒 */
-/*! @} */
+/** @{ */
+#define TIMER0_INITIAL_VALUE    61      /**< 5ミリ秒 */
+/** @} */
 
 
 /**
  * @name    周期ハンドラの実行制御
  */
-/*! @{ */
-#define CYCLICHANDLER_SLOT_NUM  4       /*!< 実行スロット数 */
-/*! @} */
+/** @{ */
+#define CYCLICHANDLER_SLOT_NUM  4       /**< 実行スロット数 */
+/** @} */
 
 
 /**

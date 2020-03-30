@@ -37,10 +37,10 @@ const struct eeprom_st EEPROM_table[] = {
 };
 
 
-bool EEPROM_writing;                            /*!< EEPROM書込み中フラグ */
-uint8_t EEPROM_write_index;                     /*!< EEPROM書込みターゲットインデックス */
-uint8_t EEPROM_write_buffer[EEPROM_SIZE_MAX];   /*!< EEPROM書込みデータバッファ */
-uint8_t EEPROM_write_count;                     /*!< EEPROM書込みサイズ */
+bool EEPROM_writing;                            /**< EEPROM書込み中フラグ */
+uint8_t EEPROM_write_index;                     /**< EEPROM書込みターゲットインデックス */
+uint8_t EEPROM_write_buffer[EEPROM_SIZE_MAX];   /**< EEPROM書込みデータバッファ */
+uint8_t EEPROM_write_count;                     /**< EEPROM書込みサイズ */
 
 
 void EEPROM_init(void)

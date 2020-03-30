@@ -15,29 +15,29 @@
 /**
  * @name    Boolean
  */
-/*! @{ */
-typedef int1                    bool;       /*!< Boolean */
-/*! @} */
+/** @{ */
+typedef int1                    bool;       /**< Boolean */
+/** @} */
 
 
 /**
  * @name    Signed Integer
  */
-/*! @{ */
-typedef signed int8             int8_t;     /*!< 符号あり，8bit */
-typedef signed int16            int16_t;    /*!< 符号あり，16bit */
-typedef signed int32            int32_t;    /*!< 符号あり，32bit */
-/*! @} */
+/** @{ */
+typedef signed int8             int8_t;     /**< 符号あり，8bit */
+typedef signed int16            int16_t;    /**< 符号あり，16bit */
+typedef signed int32            int32_t;    /**< 符号あり，32bit */
+/** @} */
 
 
 /**
  * @name    Unsigned Integer
  */
-/*! @{ */
-typedef unsigned int8           uint8_t;    /*!< 符号なし，8bit */
-typedef unsigned int16          uint16_t;   /*!< 符号なし，16bit */
-typedef unsigned int32          uint32_t;   /*!< 符号なし，32bit */
-/*! @} */
+/** @{ */
+typedef unsigned int8           uint8_t;    /**< 符号なし，8bit */
+typedef unsigned int16          uint16_t;   /**< 符号なし，16bit */
+typedef unsigned int32          uint32_t;   /**< 符号なし，32bit */
+/** @} */
 
 
 /**
@@ -45,7 +45,7 @@ typedef unsigned int32          uint32_t;   /*!< 符号なし，32bit */
  * @brief   8bit共用体
  */
 union data8_u {
-    uint8_t _8bit;          /*!< 8bitアクセス */
+    uint8_t _8bit;          /**< 8bitアクセス */
     struct {
         bool _bit0;
         bool _bit1;
@@ -64,8 +64,8 @@ union data8_u {
  * @brief   16bit共用体
  */
 union data16_u {
-    uint16_t _16bit;        /*!< 16bitアクセス */
-    uint8_t _8bit[2];       /*!< 8bitアクセス */
+    uint16_t _16bit;        /**< 16bitアクセス */
+    uint8_t _8bit[2];       /**< 8bitアクセス */
     struct {
         bool _bit0;
         bool _bit1;
@@ -92,9 +92,9 @@ union data16_u {
  * @brief   32bit共用体
  */
 union data32_u {
-    uint32_t _32bit;        /*!< 32bitアクセス */
-    uint16_t _16bit[2];     /*!< 16bitアクセス */
-    uint8_t _8bit[4];       /*!< 8bitアクセス */
+    uint32_t _32bit;        /**< 32bitアクセス */
+    uint16_t _16bit[2];     /**< 16bitアクセス */
+    uint8_t _8bit[4];       /**< 8bitアクセス */
     struct {
         bool _bit0;
         bool _bit1;

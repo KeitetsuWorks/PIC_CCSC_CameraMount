@@ -19,22 +19,23 @@
 /**
  * @name    送信リングバッファ
  */
-/*! @{ */
-uint8_t uart_tx_buffer[UART_TX_BUFFER_SIZE];    /*!< 送信リングバッファ */
-uint8_t uart_tx_buffer_read_index;              /*!< 読込みインデックス */
-uint8_t uart_tx_buffer_write_index;             /*!< 書込みインデックス */
-uint8_t uart_tx_buffer_count;                   /*!< 格納データ数 */
-/*! @} */
+/** @{ */
+uint8_t uart_tx_buffer[UART_TX_BUFFER_SIZE];    /**< 送信リングバッファ */
+uint8_t uart_tx_buffer_read_index;              /**< 読込みインデックス */
+uint8_t uart_tx_buffer_write_index;             /**< 書込みインデックス */
+uint8_t uart_tx_buffer_count;                   /**< 格納データ数 */
+/** @} */
 
 
 /**
  * @name    受信リングバッファ
  */
-uint8_t uart_rx_buffer[UART_RX_BUFFER_SIZE];   /*!< 受信リングバッファ */
-uint8_t uart_rx_buffer_read_index;             /*!< 読込みインデックス */
-uint8_t uart_rx_buffer_write_index;            /*!< 書込みインデックス */
-uint8_t uart_rx_buffer_count;                  /*!< 格納データ数 */
-/*! @} */
+/** @{ */
+uint8_t uart_rx_buffer[UART_RX_BUFFER_SIZE];   /**< 受信リングバッファ */
+uint8_t uart_rx_buffer_read_index;             /**< 読込みインデックス */
+uint8_t uart_rx_buffer_write_index;            /**< 書込みインデックス */
+uint8_t uart_rx_buffer_count;                  /**< 格納データ数 */
+/** @} */
 
 
 void uart_tx_initBuffer(void)

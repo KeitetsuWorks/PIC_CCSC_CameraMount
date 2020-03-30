@@ -20,9 +20,9 @@
 /**
  * @name    周期ハンドラの実行制御
  */
-/*! @{ */
-uint8_t CyclicHandler_slot;             /*!< 実行スロット番号 */
-/*! @} */
+/** @{ */
+uint8_t CyclicHandler_slot;             /**< 実行スロット番号 */
+/** @} */
 
 
 void CyclicHandler_init(void)

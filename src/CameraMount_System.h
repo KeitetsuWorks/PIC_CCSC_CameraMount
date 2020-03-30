@@ -15,29 +15,29 @@
 /**
  * @name    システムステータスフラグ
  */
-/*! @{ */
-#define SYSTEM_STATUS_WDT_TIMEOUT               0x01    /*!< ウォッチドッグタイムアウト */
-#define SYSTEM_STATUS_COM_TIMEOUT               0x02    /*!< 通信タイムアウト */
-/*! @} */
+/** @{ */
+#define SYSTEM_STATUS_WDT_TIMEOUT               0x01    /**< ウォッチドッグタイムアウト */
+#define SYSTEM_STATUS_COM_TIMEOUT               0x02    /**< 通信タイムアウト */
+/** @} */
 
 
 /**
  * @name    システムエラーフラグ
  */
-/*! @{ */
-#define SYSTEM_ERROR_INVALID_COMMAND            0x01    /*!< 無効なコマンド */
-/*! @} */
+/** @{ */
+#define SYSTEM_ERROR_INVALID_COMMAND            0x01    /**< 無効なコマンド */
+/** @} */
 
 
 /**
  * @name    カメラマウントコントローラのシステムステート
  */
-/*! @{ */
-#define SYSTEM_INITIALIZATION                   0       /*!< 初期化中 */
-#define SYSTEM_RUN                              1       /*!< 動作中 */
-#define SYSTEM_HALT                             2       /*!< 停止中 */
-#define SYSTEM_STATE_NUM                        3       /*!< システムステートの数 */
-/*! @} */
+/** @{ */
+#define SYSTEM_INITIALIZATION                   0       /**< 初期化中 */
+#define SYSTEM_RUN                              1       /**< 動作中 */
+#define SYSTEM_HALT                             2       /**< 停止中 */
+#define SYSTEM_STATE_NUM                        3       /**< システムステートの数 */
+/** @} */
 
 
 /**

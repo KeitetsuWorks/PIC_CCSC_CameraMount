@@ -15,42 +15,42 @@
 /**
  * @name    TRUE/FALSE
  */
-/*! @{ */
+/** @{ */
 #ifndef TRUE
-#define TRUE                    1           /*!< 真 */
+#define TRUE                    1           /**< 真 */
 #endif
 
 #ifndef FALSE
-#define FALSE                   0           /*!< 偽 */
+#define FALSE                   0           /**< 偽 */
 #endif
-/*! @} */
+/** @} */
 
 
 /**
  * @name    HIGH/LOW
  */
-/*! @{ */
+/** @{ */
 #ifndef HIGH
-#define HIGH                    1           /*!< High */
+#define HIGH                    1           /**< High */
 #endif
 
 #ifndef LOW
-#define LOW                     0           /*!< Low */
+#define LOW                     0           /**< Low */
 #endif
-/*! @} */
+/** @} */
 
 
 /**
  * @name    ON/OFF
  */
-/*! @{ */
+/** @{ */
 #ifndef ON
-#define ON                      1           /*!< ON */
+#define ON                      1           /**< ON */
 #endif
 
 #ifndef OFF
-#define OFF                     0           /*!< OFF */
+#define OFF                     0           /**< OFF */
 #endif
-/*! @} */
+/** @} */
 
 #endif  // __COMMONDEFINE_H__

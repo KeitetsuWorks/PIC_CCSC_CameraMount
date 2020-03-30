@@ -15,9 +15,9 @@
 /**
  * @name    1秒タイマの設定
  */
-/*! @{ */
-#define TIMER_1S_PERIOD         200     /*!< 5ミリ秒 * 200 = 1秒 */
-/*! @} */
+/** @{ */
+#define TIMER_1S_PERIOD         200     /**< 5ミリ秒 * 200 = 1秒 */
+/** @} */
 
 
 /**
@@ -25,8 +25,8 @@
  * @brief   タイマ状態管理構造体（5ミリ秒）
  */
 struct timer_5ms_st {
-    bool status;            /*!< タイマ状態 */
-    uint8_t start;          /*!< タイマ開始時間 */
+    bool status;            /**< タイマ状態 */
+    uint8_t start;          /**< タイマ開始時間 */
 };
 
 
@@ -35,8 +35,8 @@ struct timer_5ms_st {
  * @brief   タイマ状態管理構造体（1秒）
  */
 struct timer_1s_st {
-    bool status;            /*!< タイマ状態 */
-    uint8_t start;          /*!< タイマ開始時間 */
+    bool status;            /**< タイマ状態 */
+    uint8_t start;          /**< タイマ開始時間 */
 };
 
 

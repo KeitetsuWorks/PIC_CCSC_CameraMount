@@ -19,18 +19,18 @@
 /**
  * @name    フリーランニングタイマ
  */
-/*! @{ */
-static uint8_t FreeRunningTimer_5ms;            /*!< フリーランニングタイマ（5ミリ秒） */
-static uint8_t FreeRunningTimer_1s;             /*!< フリーランニングタイマ（1秒） */
-/*! @} */
+/** @{ */
+static uint8_t FreeRunningTimer_5ms;            /**< フリーランニングタイマ（5ミリ秒） */
+static uint8_t FreeRunningTimer_1s;             /**< フリーランニングタイマ（1秒） */
+/** @} */
 
 
 /**
  * @name    1秒タイマ
  */
-/*! @{ */
-static struct timer_5ms_st timer_1s;            /*!< 1秒タイマ */
-/*! @} */
+/** @{ */
+static struct timer_5ms_st timer_1s;            /**< 1秒タイマ */
+/** @} */
 
 
 void FreeRunningTimer_init(void)
